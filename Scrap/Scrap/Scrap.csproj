@@ -105,23 +105,11 @@
     <Compile Include="Forms\frmCoax.Designer.cs">
       <DependentUpon>frmCoax.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmDetalle.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmDetalle.Designer.cs">
-      <DependentUpon>frmDetalle.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\frmQuery.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmQuery.Designer.cs">
-      <DependentUpon>frmQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmSearch.cs">
       <SubType>Form</SubType>
@@ -146,14 +134,8 @@
     <EmbeddedResource Include="Forms\frmCoax.resx">
       <DependentUpon>frmCoax.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmDetalle.resx">
-      <DependentUpon>frmDetalle.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmQuery.resx">
-      <DependentUpon>frmQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmSearch.resx">
       <DependentUpon>frmSearch.cs</DependentUpon>
