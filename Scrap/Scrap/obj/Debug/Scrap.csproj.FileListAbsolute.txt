@@ -1,0 +1,117 @@
+C:\Users\ROBERTO\source\repos\Scrap\Scrap\bin\Debug\Scrap.exe.config
+C:\Users\ROBERTO\source\repos\Scrap\Scrap\bin\Debug\Scrap.exe
+C:\Users\ROBERTO\source\repos\Scrap\Scrap\bin\Debug\Scrap.pdb
+C:\Users\ROBERTO\source\repos\Scrap\Scrap\obj\Debug\Scrap.frmLoguin.resources
+C:\Users\ROBERTO\source\repos\Scrap\Scrap\obj\Debug\Scrap.Properties.Resources.resources
+C:\Users\ROBERTO\source\repos\Scrap\Scrap\obj\Debug\Scrap.csproj.GenerateResource.cache
+C:\Users\ROBERTO\source\repos\Scrap\Scrap\obj\Debug\Scrap.csproj.CoreCompileInputs.cache
+C:\Users\ROBERTO\source\repos\Scrap\Scrap\obj\Debug\Scrap.exe
+C:\Users\ROBERTO\source\repos\Scrap\Scrap\obj\Debug\Scrap.pdb
+C:\Users\ROBERTO\source\repos\Scrap\Scrap\obj\Debug\Scrap.Forms.frmMain.resources
+C:\Users\ROBERTO\source\repos\Scrap\Scrap\obj\Debug\Scrap.Forms.frmCoax.resources
+C:\Users\ROBERTO\source\repos\Scrap\Scrap\bin\Debug\MySql.Data.dll
+C:\Users\ROBERTO\source\repos\Scrap\Scrap\obj\Debug\Scrap.csproj.CopyComplete
+C:\Users\ROBERTO\source\repos\Scrap\Scrap\obj\Debug\Scrap.Forms.frmSearch.resources
+C:\Users\ROBERTO\source\repos\Scrap\Scrap\bin\Debug\Scrap.exe.manifest
+C:\Users\ROBERTO\source\repos\Scrap\Scrap\bin\Debug\Scrap.application
+C:\Users\ROBERTO\source\repos\Scrap\Scrap\obj\Debug\Scrap.exe.manifest
+C:\Users\ROBERTO\source\repos\Scrap\Scrap\obj\Debug\Scrap.application
+C:\Users\ROBERTO\source\repos\Scrap\Scrap\obj\Debug\Scrap.Forms.frmDetalle.resources
+C:\Users\ROBERTO\source\repos\Scrap\Scrap\obj\Debug\Scrap.Forms.frmQuery.resources
+C:\Users\ROBERTO\source\repos\Scrap\Scrap\obj\Debug\Scrap.csproj.AssemblyReference.cache
+C:\Users\ROBERTO\Desktop\Desarollo\Produccion\Scrap\Scrap\bin\Debug\Scrap.exe.config
+C:\Users\ROBERTO\Desktop\Desarollo\Produccion\Scrap\Scrap\bin\Debug\Scrap.exe.manifest
+C:\Users\ROBERTO\Desktop\Desarollo\Produccion\Scrap\Scrap\bin\Debug\Scrap.application
+C:\Users\ROBERTO\Desktop\Desarollo\Produccion\Scrap\Scrap\bin\Debug\Scrap.exe
+C:\Users\ROBERTO\Desktop\Desarollo\Produccion\Scrap\Scrap\bin\Debug\Scrap.pdb
+C:\Users\ROBERTO\Desktop\Desarollo\Produccion\Scrap\Scrap\obj\Debug\Scrap.csproj.AssemblyReference.cache
+C:\Users\ROBERTO\Desktop\Desarollo\Produccion\Scrap\Scrap\obj\Debug\Scrap.frmLoguin.resources
+C:\Users\ROBERTO\Desktop\Desarollo\Produccion\Scrap\Scrap\obj\Debug\Scrap.Forms.frmCoax.resources
+C:\Users\ROBERTO\Desktop\Desarollo\Produccion\Scrap\Scrap\obj\Debug\Scrap.Forms.frmDetalle.resources
+C:\Users\ROBERTO\Desktop\Desarollo\Produccion\Scrap\Scrap\obj\Debug\Scrap.Forms.frmMain.resources
+C:\Users\ROBERTO\Desktop\Desarollo\Produccion\Scrap\Scrap\obj\Debug\Scrap.Forms.frmQuery.resources
+C:\Users\ROBERTO\Desktop\Desarollo\Produccion\Scrap\Scrap\obj\Debug\Scrap.Forms.frmSearch.resources
+C:\Users\ROBERTO\Desktop\Desarollo\Produccion\Scrap\Scrap\obj\Debug\Scrap.Properties.Resources.resources
+C:\Users\ROBERTO\Desktop\Desarollo\Produccion\Scrap\Scrap\obj\Debug\Scrap.csproj.GenerateResource.cache
+C:\Users\ROBERTO\Desktop\Desarollo\Produccion\Scrap\Scrap\obj\Debug\Scrap.csproj.CoreCompileInputs.cache
+C:\Users\ROBERTO\Desktop\Desarollo\Produccion\Scrap\Scrap\obj\Debug\Scrap.exe.manifest
+C:\Users\ROBERTO\Desktop\Desarollo\Produccion\Scrap\Scrap\obj\Debug\Scrap.application
+C:\Users\ROBERTO\Desktop\Desarollo\Produccion\Scrap\Scrap\obj\Debug\Scrap.csproj.CopyComplete
+C:\Users\ROBERTO\Desktop\Desarollo\Produccion\Scrap\Scrap\obj\Debug\Scrap.exe
+C:\Users\ROBERTO\Desktop\Desarollo\Produccion\Scrap\Scrap\obj\Debug\Scrap.pdb
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\bin\Debug\Scrap.exe.config
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\bin\Debug\Scrap.exe.manifest
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\bin\Debug\Scrap.application
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\bin\Debug\Scrap.exe
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\bin\Debug\Scrap.pdb
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\obj\Debug\Scrap.csproj.AssemblyReference.cache
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\obj\Debug\Scrap.csproj.SuggestedBindingRedirects.cache
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\obj\Debug\Scrap.frmLoguin.resources
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\obj\Debug\Scrap.Forms.frmCoax.resources
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\obj\Debug\Scrap.Forms.frmDetalle.resources
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\obj\Debug\Scrap.Forms.frmMain.resources
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\obj\Debug\Scrap.Forms.frmQuery.resources
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\obj\Debug\Scrap.Forms.frmSearch.resources
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\obj\Debug\Scrap.Properties.Resources.resources
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\obj\Debug\Scrap.csproj.GenerateResource.cache
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\obj\Debug\Scrap.csproj.CoreCompileInputs.cache
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\obj\Debug\Scrap.exe.manifest
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\obj\Debug\Scrap.application
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\obj\Debug\Scrap.csproj.CopyComplete
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\obj\Debug\Scrap.exe
+C:\Users\qjspc2\Desktop\Proyecto Scrap\Scrap\Scrap\obj\Debug\Scrap.pdb
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\obj\Debug\Scrap.csproj.AssemblyReference.cache
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\obj\Debug\Scrap.csproj.SuggestedBindingRedirects.cache
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\obj\Debug\Scrap.exe
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\obj\Debug\Scrap.pdb
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\bin\Debug\Scrap.exe.config
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\bin\Debug\Scrap.exe.manifest
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\bin\Debug\Scrap.application
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\bin\Debug\Scrap.exe
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\bin\Debug\Scrap.pdb
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\obj\Debug\Scrap.frmLoguin.resources
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\obj\Debug\Scrap.Forms.frmCoax.resources
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\obj\Debug\Scrap.Forms.frmDetalle.resources
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\obj\Debug\Scrap.Forms.frmMain.resources
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\obj\Debug\Scrap.Forms.frmQuery.resources
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\obj\Debug\Scrap.Forms.frmSearch.resources
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\obj\Debug\Scrap.Properties.Resources.resources
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\obj\Debug\Scrap.csproj.GenerateResource.cache
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\obj\Debug\Scrap.csproj.CoreCompileInputs.cache
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\obj\Debug\Scrap.exe.manifest
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\obj\Debug\Scrap.application
+C:\Users\roberto.canales\Desktop\Scrap\Scrap\obj\Debug\Scrap.csproj.CopyComplete
+C:\Users\R00B\Desktop\Scrap\Scrap\obj\Debug\Scrap.csproj.AssemblyReference.cache
+C:\Users\R00B\Desktop\Scrap\Scrap\obj\Debug\Scrap.frmLoguin.resources
+C:\Users\R00B\Desktop\Scrap\Scrap\obj\Debug\Scrap.Forms.frmCoax.resources
+C:\Users\R00B\Desktop\Scrap\Scrap\obj\Debug\Scrap.Forms.frmDetalle.resources
+C:\Users\R00B\Desktop\Scrap\Scrap\obj\Debug\Scrap.Forms.frmMain.resources
+C:\Users\R00B\Desktop\Scrap\Scrap\obj\Debug\Scrap.Forms.frmQuery.resources
+C:\Users\R00B\Desktop\Scrap\Scrap\obj\Debug\Scrap.Forms.frmSearch.resources
+C:\Users\R00B\Desktop\Scrap\Scrap\obj\Debug\Scrap.Properties.Resources.resources
+C:\Users\R00B\Desktop\Scrap\Scrap\obj\Debug\Scrap.csproj.GenerateResource.cache
+C:\Users\R00B\Desktop\Scrap\Scrap\obj\Debug\Scrap.csproj.CoreCompileInputs.cache
+C:\Users\R00B\Desktop\Scrap\Scrap\obj\Debug\Scrap.exe
+C:\Users\R00B\Desktop\Scrap\Scrap\obj\Debug\Scrap.pdb
+C:\Users\R00B\Desktop\Scrap\Scrap\bin\Debug\Scrap.exe.config
+C:\Users\R00B\Desktop\Scrap\Scrap\bin\Debug\Scrap.exe.manifest
+C:\Users\R00B\Desktop\Scrap\Scrap\bin\Debug\Scrap.application
+C:\Users\R00B\Desktop\Scrap\Scrap\bin\Debug\Scrap.exe
+C:\Users\R00B\Desktop\Scrap\Scrap\bin\Debug\Scrap.pdb
+C:\Users\R00B\Desktop\Scrap\Scrap\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\R00B\Desktop\Scrap\Scrap\bin\Debug\MySql.Data.dll
+C:\Users\R00B\Desktop\Scrap\Scrap\bin\Debug\Google.Protobuf.dll
+C:\Users\R00B\Desktop\Scrap\Scrap\bin\Debug\ZstdNet.dll
+C:\Users\R00B\Desktop\Scrap\Scrap\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\R00B\Desktop\Scrap\Scrap\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\R00B\Desktop\Scrap\Scrap\bin\Debug\System.Memory.dll
+C:\Users\R00B\Desktop\Scrap\Scrap\bin\Debug\System.Buffers.dll
+C:\Users\R00B\Desktop\Scrap\Scrap\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\R00B\Desktop\Scrap\Scrap\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\R00B\Desktop\Scrap\Scrap\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\R00B\Desktop\Scrap\Scrap\bin\Debug\MySql.Data.xml
+C:\Users\R00B\Desktop\Scrap\Scrap\obj\Debug\Scrap.exe.manifest
+C:\Users\R00B\Desktop\Scrap\Scrap\obj\Debug\Scrap.application
+C:\Users\R00B\Desktop\Scrap\Scrap\obj\Debug\Scrap.csproj.CopyComplete
