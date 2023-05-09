@@ -14,76 +14,50 @@ namespace Scrap.Forms
 {
     public partial class frmCoax : Form
     {
-        Librarys.clsResize _form_resize;
+ 
         Librarys.Scrap _scrap;
-        List<string>[] listLeads;
+
         #region private variables
-        private int _areId;
+ 
         private int _maq_id;
-        private int _count;
-        private int _idPro;
-        private int _idSub;
-        private string key;
-        private int qtyLeads;
-        private int secuencia;
-        private string _defecto;
-        private int _idComponente;
-        private string _shift;
         private int _idUser;
-        private bool enable;
-        private string _config;
-        private string _date;
-        private int _num_id;
+        private string _area;
+        private int _estacion;
+        private string _lado;
+        private int _negocio;
+        private int _idProceso;
+        private string _search;
+        private bool _plado;
         #endregion
-        public int IdUser { get => _idUser; set => _idUser = value; }
-        public frmCoax()
+
+        public frmCoax(string area, int estacion, string lado, int maq_id, int user, int neg)
         {
             InitializeComponent();
             _scrap = new Librarys.Scrap();
-            //_form_resize = new Librarys.clsResize(this);
-           // this.Load += _Load;
-            //this.Resize += _Resize;
+            _area = area;
+            _estacion = estacion;
+            _lado = lado;
+            _maq_id = maq_id;
+            _idUser = user;
+            _negocio = neg;
         }
-        private void _Load(object sender, EventArgs e)
-        {
-            _form_resize._get_initial_size();
-        }
-        private void _Resize(object sender, EventArgs e)
-        {
-            _form_resize._resize();
-        }
-        #region DropDownList
-        private void FillAreas()
-        {
-           /* cbxArea.DataSource = _scrap.SelectAreas();
-            cbxArea.DisplayMember = "AREA";
-            cbxArea.ValueMember = "ID";
-            cbxArea.SelectedIndex = -1;*/
-        }
-        private void FillLineas(int are_id, string sub)
-        {
-           /* cbxLinea.DataSource = _scrap.SelectLineas(are_id, sub);
-            cbxLinea.DisplayMember = "LINEA";
-            cbxLinea.ValueMember = "ID";
-            cbxLinea.SelectedIndex = -1;*/
-        }
-        private void FillProcesos(int maquina)
-        {
 
-            cbxProceso.DataSource = _scrap.SelectProcesos();
+        #region DropDownList
+
+        private void FillProcesos()
+        {
+            string query = "";
+
+            if (_plado == true)
+                query = " (PROC_ID = 3 OR PROC_ID = 4)";
+            else
+                query = " PROC_ID = 12";
+
+            cbxProceso.DataSource = _scrap.SelectProcesos(query);
             
             cbxProceso.DisplayMember = "PROCESO";
             cbxProceso.ValueMember = "ID";
             cbxProceso.SelectedIndex = -1;
-        }
-        private void FillSubProcesos(int id, string lea_id)
-        {
-            /*cbxEstaciones.DataSource = _scrap.SelectSubprocesos(id, lea_id);
-            cbxEstaciones.DisplayMember = "SUBPROCESO";
-            cbxEstaciones.ValueMember = "ID";
-            cbxEstaciones.SelectedIndex = -1;*/
-
-            cbxDefecto.DataSource = null;
         }
         private void FillDefectos(int idPro, int negocio)
         {
@@ -95,48 +69,20 @@ namespace Scrap.Forms
         #endregion
         private void frmCoax_Load(object sender, EventArgs e)
         {
-            FillAreas();
+            FillLabels();
         }
-        private void cbxArea_DropDownClosed(object sender, EventArgs e)
+        private void FillLabels()
         {
-            try
-            {
-                string subquery = "";
-                //_areId = int.Parse(cbxArea.SelectedValue.ToString());
-
-                if(_areId == 16)
-                {
-                    subquery = " OR MAQ_ID = 321";
-                }
-
-                FillLineas(_areId, subquery);
-                //cbxLinea.Enabled = true;
-            }
-            catch
-            {
-                Mensaje(1, "Selecciona una Area.");
-            }
-            
+            lblArea.Text = _area;
+            lblLine.Text = _lado + "-" + _estacion;
         }
-        private void cbxLinea_DropDownClosed(object sender, EventArgs e)
-        {
-            try
-            {
-               // _maq_id = int.Parse(cbxLinea.SelectedValue.ToString());
-                //FillProcesos(_maq_id);
-                FillTextBox(_maq_id);
-            }
-            catch
-            {
-                MessageBox.Show("Selecciona una estacion");
-            }
-        }
+
         private void Mensaje(int tipo, string mensaje)
         {
             if(tipo == 0)
             {
-                lblMensajes.BackColor = Color.Blue;
-                lblMensajes.ForeColor = Color.White;
+                lblMensajes.BackColor = Color.GreenYellow;
+                lblMensajes.ForeColor = Color.Black;
             }
             else if(tipo == 1)
             {
@@ -145,83 +91,45 @@ namespace Scrap.Forms
             }
             lblMensajes.Text = mensaje;
         }
-        private void rdbLead_CheckedChanged(object sender, EventArgs e)
-        {
-            //txtLead.Enabled = true;
-            /*if(rdbLead.Checked == true)
-            {
-                txtLead.Enabled = true;
-                txtLead.Focus();
-                //cbxProceso.Enabled = true;
-                lblComponente.Visible = false;
-                cbxComponentes.Visible = false;
-            }*/
-            
-        }
         private void cbxNp_DropDownClosed(object sender, EventArgs e)
         {
             Mensaje(0, "Seleccione la estacion.");
-            string search = txtLead.Text.Trim();
 
-            if (_scrap.BuscaLeads(_maq_id, search) > 0)
-            {
-                //cargar procesos
-                //List<string>[] listLeads = new List<string>[2];
-                listLeads = _scrap.NumLeads(_scrap.Num_id);
-
-                qtyLeads = listLeads[0].Count();
-                //cbxEstaciones.Enabled = true;
-                cbxProceso.Enabled = true;
-                if (qtyLeads == 1)
-                {
-                    key = _scrap.Lea_id.ToString();
-                    FillProcesos(_maq_id);
-
-                    //FillSubProcesos(_idPro, _scrap.Lea_id.ToString());
-                }
-                else
-                {
-                    if (_idPro == 1 || _idPro == 2 || _idPro == 3 || _idPro == 9 || _idPro == 10 || _idPro == 23
-                        || _idPro == 24 || _idPro == 25 || _idPro == 26)
-                    {
-                        key = _scrap.Lea_id.ToString();
-                        FillProcesos(_maq_id);
-                        //FillSubProcesos(_idPro, key);
-                    }
-                    else
-                    {
-                        //listLeads = new List<string>[2];
-                        listLeads = _scrap.NumLeads(_scrap.Num_id);
-
-                        key = _scrap.RegresaLlave(listLeads, qtyLeads);
-                        FillProcesos(_maq_id);
-                        //FillSubProcesos(_idPro, key);
-                    }
-                }
-            }
         }
         private void cbxProceso_DropDownClosed(object sender, EventArgs e)
         {
-            try
+            cbxDefecto.Enabled = true;
+            _idProceso = int.Parse(cbxProceso.SelectedValue.ToString());
+            FillDefectos(_idProceso, _negocio);
+
+            fillDataGrid(_search, Query(), codigo(_idProceso));
+
+            Mensaje(0, "Selecciona el defecto.");
+        }
+        private string codigo(int idpro)
+        {
+            string cod = "";
+            switch (idpro)
             {
-                _idPro = int.Parse(cbxProceso.SelectedValue.ToString());
-                txtLead.Enabled = true;
-                if (_idPro == 4 || _idPro == 5 || _idPro == 3)
-                {
-                    key = _scrap.Lea_id.ToString();
-                    FillSubProcesos(_idPro, key);
-                }
-                else
-                {
-                    key = _scrap.RegresaLlave(listLeads, qtyLeads);
-                    FillSubProcesos(_idPro, key);
-                }
-                //cbxEstaciones.Enabled = true;
+                case 3:
+                    cod = "C";
+                    break;
+                case 4:
+                    cod = "P";
+                    break;
+                case 12:
+                    cod = "T";
+                    break;
             }
-            catch
-            {
-                Mensaje(0, "Seleccione un proceso");
-            }
+
+            return cod;
+        }
+        private string Query()
+        {
+            if (_plado == true)
+                return "AND LADO=1";
+            else
+                return  "";
         }
         private void cbxEstaciones_DropDownClosed(object sender, EventArgs e)
         {
@@ -229,59 +137,20 @@ namespace Scrap.Forms
             {
                 //_idSub = int.Parse(cbxEstaciones.SelectedValue.ToString());
                 cbxDefecto.Enabled = true;
-                Mensaje(0, "Seleccione el defecto.");
-                FillDefectos(_idPro, 1);
-                fillDataGrid(_idSub);
             }
             catch
             {
                 Mensaje(1, "Selecciona un proceso.");
             }
         }
-        private void fillDataGrid(int idSub)
-        {
-            //int secuenc
-            dgvComponentes.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            dgvComponentes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            if(qtyLeads == 1)
-            {
-                secuencia = _scrap.Secuencia(_scrap.Lea_id.ToString(), idSub);
-                dgvComponentes.DataSource = _scrap.SelectComponentes(idSub, _scrap.Lea_id.ToString(), secuencia);
-                this.dgvComponentes.Columns[0].Visible = false;
-            }
-            else
-            {
-                if(_idPro >= 7 && _idPro < 22)
-                {
-                    secuencia = _scrap.Secuencia(key, idSub);
-                    string qry = " AND CE.ORDEN > 0 AND CE.ORDEN <=" + secuencia;
-                    dgvComponentes.DataSource = _scrap.SelectComponentesNp(_num_id, qry);
-                    //dgvComponentes.DataSource = _scrap.SelectComponentesNp(idSub, key, secuencia);
-                }
-                else if((_idPro > 7) || (_idPro >= 22 && _idPro <= 24))
-                {
-                    secuencia = _scrap.Secuencia(key, idSub);
-                    string qry = " AND CE.ORDEN > 0 AND CE.ORDEN <=" + secuencia;
-                    dgvComponentes.DataSource = _scrap.SelectComponentesNp(_num_id, qry);
-                    //dgvComponentes.DataSource = _scrap.SelectComponentesNp(idSub, key, secuencia);
-                }
-                else
-                {
-                    secuencia = _scrap.Secuencia(_scrap.Lea_id.ToString(), idSub);
-                    dgvComponentes.DataSource = _scrap.SelectComponentes(idSub, _scrap.Lea_id.ToString(), secuencia);
-                }
-                this.dgvComponentes.Columns[0].Visible = false;
-            }
-        }
         private void FillTextBox(int maq_id)
         {
             AutoCompleteStringCollection MyCollection = new AutoCompleteStringCollection();
 
-            foreach (DataRow row in _scrap.SelectLeadsLinea(maq_id).Rows)
+           /* foreach (DataRow row in _scrap.SelectLeadsLinea(maq_id).Rows)
             {
                 MyCollection.Add(row[0].ToString());
-            }
+            }*/
 
             txtLead.AutoCompleteCustomSource = MyCollection;
         }
@@ -452,117 +321,43 @@ namespace Scrap.Forms
         {
             if (e.KeyData == Keys.Enter)
             {
-                /*string search = "";
-                search = txtLead.Text.Trim();
-
-                if (rdbLead.Checked == true)
+                
+                _search = txtLead.Text.Trim();
+                if (_scrap.EmpiezaConNumeros(_search))
                 {
-                    //txtLead.Enabled = true;
-                    List<string>[] list = new List<string>[2];
-                    list = _scrap.LeadsNp(search, _maq_id);
-                    _count = list[0].Count();
-
-                    if (_count > 0)
+                    if (_scrap.BuscaNumparte(_search))
                     {
-
-                        if (_count > 1)
-                        {
-                            lblNp.Visible = true;
-                            cbxNp.Visible = true;
-
-                            if(rdbLead.Checked == true && _areId == 16)
-                            {
-                                cbxConfig.Visible = true;
-                                lblConfig.Visible = true;
-                            }
-
-                            //cbxNp.Items.Add(list[1]);
-                            for (int i = 0; i < _count; i++)
-                            {
-                                cbxNp.Items.Add(list[1][i]);
-                            }
-                            //cbxNp.DisplayMember = list[1].ToString();
-                            //cbxNp.ValueMember = list[0].ToString();
-
-                            cbxNp.SelectedIndex = -1;
-
-                            Mensaje(1, "Selecciona el numero de parte que se esta trabajando");
-
-                        }
-                        else
-                        {
-                            
-                            if (_scrap.BuscaLeads(_maq_id, search) > 0)
-                            {
-                                _num_id = _scrap.Num_id;
-                                listLeads = new List<string>[2];
-                                listLeads = _scrap.NumLeads(_scrap.Num_id);
-
-                                qtyLeads = listLeads[0].Count();
-                                //cbxEstaciones.Enabled = true;
-                                cbxProceso.Enabled = true;
-
-                                if (rdbLead.Checked == true && _areId == 16)
-                                {
-                                    cbxConfig.Visible = true;
-                                    lblConfig.Visible = true;
-                                }
-
-
-                                if (qtyLeads == 1)
-                                {
-                                    //FillSubProcesos(_idPro, _scrap.Lea_id.ToString());
-                                    key = _scrap.Lea_id.ToString();
-                                    FillProcesos(_maq_id);
-                                }
-                                else
-                                {
-                                    FillProcesos(_maq_id);
-                                    if(_idPro == 1 || _idPro == 2 || _idPro == 3 || _idPro == 9 || _idPro == 10 || _idPro == 23 
-                                        || _idPro == 24 || _idPro == 25 || _idPro == 26)
-                                    {
-                                        key = _scrap.Lea_id.ToString();
-                                        //FillSubProcesos(_idPro, key);
-                                    }
-                                    else
-                                    {
-                                        key = _scrap.RegresaLlave(listLeads, qtyLeads);
-                                        //FillSubProcesos(_idPro, key);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Mensaje(1, "Este lead no es valido");
+                        cbxProceso.Enabled = true;
+                        lblNp.Text = _search;
+                        Mensaje(0, "Seleccione un proceso");
+                        FillProcesos();
+                        _plado = false;
+                        lblLado.Visible = false;
+                        cbxLado.Visible = false;
                     }
                 }
                 else
                 {
-
+                    if (_scrap.BuscaLead(_search, _maq_id))
+                    {
+                        _plado = true;
+                        cbxProceso.Enabled = true;
+                        lblLado.Visible = true;
+                        cbxLado.Visible = true;
+                        Mensaje(0, "Seleccione un Lado y proceso");
+                        FillProcesos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El lead no existe o no pertenece a esta linea");
+                    }
                 }
-            }*/
-        }
-        /*private void rdbComponente_CheckedChanged(object sender, EventArgs e)
-        {
-           if(rdbComponente.Checked == true)
-            {
-                lblComponente.Visible = true;
-                cbxComponentes.Visible = true;
-                cbxProceso.Enabled = false;
-                FillComponentes();
-                enable = true;
-                Clear("componente", enable);
-                lblConfig.Visible = false;
-                cbxConfig.Visible = true;
-                cbxConfig.SelectedIndex = -1;
+
+
             }
-        }*/
-       /* private void cbxComponentes_DropDownClosed(object sender, EventArgs e)
-        {
-            txtCantidad.Enabled = true;
         }
+ 
+       /*
         private void Clear(string tipo, bool enab)
         {
             if(tipo == "componente")
@@ -592,38 +387,53 @@ namespace Scrap.Forms
 
             }
         }
-        private void rdbAtrazo_CheckedChanged(object sender, EventArgs e)
-        {
+        }*/
 
-        }
-        private void ckxAtrazo_CheckedChanged(object sender, EventArgs e)
+        private void frmCoax_FormClosing(object sender, FormClosingEventArgs e)
         {
-            /*if (ckxAtrazo.Checked == true)
+            frmMain main= new frmMain();
+            main.Show();
+        }
+        private void fillDataGrid(string key, string lado, string codpro)
+        {
+            //int secuenc
+            dgvComponentes.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dgvComponentes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            DataGridViewCheckBoxColumn columnaCheckBox = new DataGridViewCheckBoxColumn();
+            columnaCheckBox.HeaderText = "CHECK";
+            columnaCheckBox.Name = "chkColumna";
+
+            // Agregar la columna CheckBox al DataGridView
+            dgvComponentes.Columns.Add(columnaCheckBox);
+
+
+
+
+            dgvComponentes.DataSource = _scrap.SearchListComponents(key, lado, codpro);
+            if(dgvComponentes.Rows.Count > 0)
             {
-                cbxTurno.Enabled = true;
-                dtpFecha.Enabled = true;
+                int checkBoxColumnIndex = dgvComponentes.Columns["chkColumna"].Index;
+
+                foreach (DataGridViewRow row in dgvComponentes.Rows)
+                {
+                    DataGridViewCheckBoxCell checkBoxCell = row.Cells[checkBoxColumnIndex] as DataGridViewCheckBoxCell;
+                    checkBoxCell.Value = true;
+                    // Ajustar el tamaño de la celda que contiene el CheckBox
+                    //dgvComponentes.Columns[checkBoxColumnIndex].DefaultCellStyle.Padding = new Padding(10); // Ajustar el padding para aumentar el tamaño
+                    //dgvComponentes.Columns[checkBoxColumnIndex].MinimumWidth = 50;
+                }
+                foreach (DataGridViewColumn column in dgvComponentes.Columns)
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
             }
-            else
-            {
-                cbxTurno.Enabled = false;
-                dtpFecha.Enabled = true;
-            }*/
+            this.dgvComponentes.Columns[1].Visible = false;
+
         }
 
-        private void rdbSetup_CheckedChanged(object sender, EventArgs e)
+        private void cbxDefecto_DropDownClosed_1(object sender, EventArgs e)
         {
-            /*if (rdbSetup.Checked == true)
-            {
-                lblComponente.Visible = true;
-                cbxComponentes.Visible = true;
-                cbxProceso.Enabled = false;
-                FillComponentes();
-                enable = true;
-                Clear("componente", enable);
-                lblConfig.Visible = false;
-                cbxConfig.Visible = true;
-                cbxConfig.SelectedIndex = -1;
-            }*/
+            txtCantidad.Enabled = true;
         }
     }
 }

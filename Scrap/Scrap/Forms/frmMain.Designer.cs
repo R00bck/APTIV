@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.iconMenuItem1 = new FontAwesome.Sharp.IconMenuItem();
-            this.TSMICapturar = new System.Windows.Forms.ToolStripMenuItem();
             this.iconMenuItem2 = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuItem3 = new FontAwesome.Sharp.IconMenuItem();
             this.cargarComponentesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,8 +58,7 @@
             // 
             // iconMenuItem1
             // 
-            this.iconMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TSMICapturar});
+            this.iconMenuItem1.Enabled = false;
             this.iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.UserAlt;
             this.iconMenuItem1.IconColor = System.Drawing.Color.Black;
             this.iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -70,13 +68,7 @@
             this.iconMenuItem1.Text = "Manufactura";
             this.iconMenuItem1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.iconMenuItem1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // TSMICapturar
-            // 
-            this.TSMICapturar.Name = "TSMICapturar";
-            this.TSMICapturar.Size = new System.Drawing.Size(224, 26);
-            this.TSMICapturar.Text = "Capturar";
-            this.TSMICapturar.Click += new System.EventHandler(this.TSMICapturar_Click);
+            this.iconMenuItem1.Click += new System.EventHandler(this.iconMenuItem1_Click);
             // 
             // iconMenuItem2
             // 
@@ -111,7 +103,7 @@
             this.bajaToolStripMenuItem,
             this.actualizacionToolStripMenuItem});
             this.cargarComponentesToolStripMenuItem.Name = "cargarComponentesToolStripMenuItem";
-            this.cargarComponentesToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.cargarComponentesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.cargarComponentesToolStripMenuItem.Text = "Componentes";
             // 
             // altaToolStripMenuItem
@@ -158,6 +150,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "  Dashboard";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.msMain.ResumeLayout(false);
             this.msMain.PerformLayout();
             this.ResumeLayout(false);
@@ -171,7 +164,6 @@
         private FontAwesome.Sharp.IconMenuItem iconMenuItem1;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem2;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem TSMICapturar;
         private System.Windows.Forms.ToolStripMenuItem cargarComponentesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem altaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bajaToolStripMenuItem;

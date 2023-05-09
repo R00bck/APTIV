@@ -166,19 +166,18 @@ namespace Scrap.Librarys
             }
 
         }
-        public DataTable SelectProcesos()
+        public DataTable SelectProcesos(string sub)
         {
             var connectionString = ConfigurationManager.ConnectionStrings["myDatabaseConnection"].ConnectionString;
 
             string query = @"SELECT PROC_ID AS ID, PROC_PROCESO AS PROCESO FROM PROCESOS 
-                           WHERE (PROC_ID = 3 OR PROC_ID = 4 OR PROC_ID = 7 OR PROC_ID = 12)";
+                           WHERE " + sub;
 
             using (var connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
                 //Create Command
                 MySqlCommand cmd = new MySqlCommand(query, connection);
-                //cmd.Parameters.AddWithValue("are_id", are_id);
                 DataTable dt = new DataTable();
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                 da.Fill(dt);
@@ -458,24 +457,23 @@ namespace Scrap.Librarys
             }
 
         }
-        public DataTable SearchListComponents(string lead)
+        public DataTable SearchListComponents(string key, string lado, string codpro)
         {
             var connectionString = ConfigurationManager.ConnectionStrings["myDatabaseConnection"].ConnectionString;
 
-            string query = @"SELECT CE.comp_id AS ID, UPPER(S.subproceso) AS PROCESO, C.componente AS COMPONENTE, CE.cantidad AS QTY, C.um AS UNIDAD, 
-                            UPPER(C.description) AS DESCRIPCCION, C.current_cost AS COSTO, CE.orden AS SECUENCIA
-                            FROM tblcomponenteestacion CE
-                            INNER JOIN subprocesos S ON S.id = CE.are_id
-                            INNER JOIN tblcomponentes C ON C.id =CE.comp_id
-                            WHERE CE.LEA_ID =?lead
-                            ORDER BY CAST(CE.ORDEN AS SIGNED)";
+            string query = @"SELECT ID_NUMPCOMP AS ID, COD_PROCESO AS CODIGO, LADO, C.componente AS COMPONENTE,
+                            C.description AS DESCRIPCCION, CANTIDAD, C.um AS UM, C.CURRENT_COST AS COSTO
+                            FROM numparte_componentes NC
+                            INNER JOIN tblcomponentes C ON C.id = NC.id
+                            WHERE LLAVE =?llave AND COD_PROCESO =?cod " + lado;
 
             using (var connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
                 //Create Command
                 MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.Parameters.AddWithValue("lead", lead);
+                cmd.Parameters.AddWithValue("llave", key);
+                cmd.Parameters.AddWithValue("cod", codpro);
                 DataTable dt = new DataTable();
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                 da.Fill(dt);
@@ -492,7 +490,7 @@ namespace Scrap.Librarys
             listLeads = NumLeads(np);
 
             List<string>[] listLlaves = new List<string>[1];
-            listLlaves = NpFull(listLeads);
+           // listLlaves = NpFull(listLeads);
             int Ql = listLlaves[0].Count;
 
             DataTable table = new DataTable();
@@ -792,80 +790,7 @@ namespace Scrap.Librarys
             }
             return table;
         }
-        public string RegresaLlave(List<string>[] codigos, int qty)
-        {
-            string key = "";
 
-            for(int i =0; i < qty; i++)
-            {
-                key = key + codigos[0][i];
-            }
-
-            return key;
-        }
-        public int Secuencia(string key, int proceso)
-        {
-            int secuencia = 0;
-
-
-            var connectionString = ConfigurationManager.ConnectionStrings["myDatabaseConnection"].ConnectionString;
-
-            string query = @"SELECT orden FROM tblcomponenteestacion 
-                             WHERE lea_id =?lea_id AND are_id =?idPro";
-
-            using (var connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.Parameters.AddWithValue("lea_id", key);
-                cmd.Parameters.AddWithValue("idPro", proceso);
-
-                MySqlDataReader dr = cmd.ExecuteReader();
-
-                if (dr.HasRows == true)
-                {
-
-                    while (dr.Read())
-                    {
-                        secuencia = int.Parse(dr[0].ToString());
-                    }
-
-                }
-
-                connection.Close();
-            }
-
-            return secuencia;
-        }
-        public DataTable SelectLeadsLinea(int maq_id)
-        {
-            var connectionString = ConfigurationManager.ConnectionStrings["myDatabaseConnection"].ConnectionString;
-
-            string query = @"SELECT DISTINCT(LEA_LEAD) AS lead
-								FROM LEADS L
-								INNER JOIN nplead nl ON nl.lea_id = L.lea_id
-								INNER JOIN npmaquina nm ON nm.num_id = nl.num_id
-								INNER JOIN maquinaria m ON m.maq_id = nm.maq_id
-								WHERE m.maq_id =?maq_id
-								ORDER BY L.LEA_LEAD";
-
-            using (var connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-                //Create Command
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.Parameters.AddWithValue("maq_id", maq_id);
-                DataTable dt = new DataTable();
-                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                da.Fill(dt);
-
-                connection.Close();
-
-                return dt;
-            }
-
-        }
         public DataTable SelectComponentes()
         {
             var connectionString = ConfigurationManager.ConnectionStrings["myDatabaseConnection"].ConnectionString;
@@ -888,13 +813,7 @@ namespace Scrap.Librarys
             }
 
         }
-        public string GetId(string combo)
-        {
-            string[] id = combo.Split('-');
-            string regresa = id[0];
 
-            return regresa;
-        }
         public bool ValidateText(string text)
         {
             if (string.IsNullOrEmpty(text))
@@ -996,7 +915,7 @@ namespace Scrap.Librarys
             listLeads = NumLeads(np);
 
             List<string>[] listLlaves = new List<string>[1];
-            listLlaves = NpFull(listLeads);
+            //listLlaves = NpFull(listLeads);
             int Ql = listLlaves[0].Count;
 
             DataTable table = new DataTable();
@@ -1076,26 +995,6 @@ namespace Scrap.Librarys
                 table.Rows.Add(row);
             }
             return table;
-        }
-        public List<string>[] NpFull(List<string>[] codigo)
-        {
-            List<string>[] list = new List<string>[1];
-            list[0] = new List<string>();
-            int c = codigo[0].Count;
-            c++;
-
-            string key = RegresaLlave(codigo, codigo[0].Count);
-
-            for (int i = 0; i < c; i++)
-            {
-                if (i < codigo[0].Count)
-                    list[0].Add(codigo[0][i] + "");
-                else
-                    list[0].Add(key + "");
-            }
-
-
-            return list;
         }
         public List<string>[] SelectListComponentes(string lea_id, string sec)
         {
@@ -1349,5 +1248,91 @@ namespace Scrap.Librarys
             }
 
         }
+
+        #region nuevas funciones
+        public bool EmpiezaConNumeros(string cadena)
+        {
+            bool resultado = false;
+
+            if (cadena.Length > 0)
+            {
+                // Obtener el primer carácter de la cadena
+                char primerCaracter = cadena[0];
+
+                // Verificar si el primer carácter es un número
+                if (char.IsDigit(primerCaracter))
+                {
+                    resultado = true;
+                }
+            }
+
+            return resultado;
+        }
+        public bool BuscaNumparte(string np)
+        {
+ 
+            var connectionString = ConfigurationManager.ConnectionStrings["myDatabaseConnection"].ConnectionString;
+
+            string query = @"SELECT N.NUM_ID AS ID, N.NUM_NUMPARTE AS NP 
+                            FROM numparte N
+                            INNER JOIN npmaquina NM ON NM.num_id = N.num_id
+                            INNER JOIN maquinaria M ON M.maq_id = NM.maq_id
+                            WHERE N.NUM_NUMPARTE =?np";
+
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("np", np);
+                MySqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.HasRows == true)
+                {
+
+                    return true;
+
+                }
+
+                connection.Close();
+            }
+
+            return false;
+        }
+        public bool BuscaLead(string lead, int maq_id)
+        {
+
+            var connectionString = ConfigurationManager.ConnectionStrings["myDatabaseConnection"].ConnectionString;
+
+            string query = @"SELECT L.lea_lead FROM NUMPARTE N
+                            INNER JOIN NPMAQUINA NPM ON N.NUM_ID = NPM.NUM_ID
+                            INNER JOIN MAQUINARIA M ON NPM.MAQ_ID = M.MAQ_ID
+                            INNER JOIN NPLEAD NPL ON NPL.NUM_ID = N.NUM_ID
+                            INNER JOIN LEADS L ON L.LEA_ID = NPL.LEA_ID
+                            WHERE M.MAQ_ID=?id
+                            AND L.LEA_LEAD=?lead";
+
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("id", maq_id);
+                cmd.Parameters.AddWithValue("lead", lead);
+                MySqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.HasRows == true)
+                {
+
+                    return true;
+
+                }
+
+                connection.Close();
+            }
+
+            return false;
+        }
+        #endregion
     }
 }

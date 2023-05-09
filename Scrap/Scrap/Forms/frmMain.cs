@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
 
 namespace Scrap.Forms
 {
@@ -14,40 +15,35 @@ namespace Scrap.Forms
     {
         private int userId;
         public int UserId { get => userId; set => userId = value; }
+        Librarys.Estacion est;
+        private string[] proceso = { "CORTE", "PRENSADO", "ENSAMBLE" };
         public frmMain()
         {
             InitializeComponent();
+            est = new Librarys.Estacion();
         }
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
 
-        /*private void reportesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void iconMenuItem1_Click(object sender, EventArgs e)
         {
-            Forms.frmSearch search = new frmSearch();
-            search.Show();
-            search.MdiParent = this;
-        }
-        */
-        /*
-        private void detalleToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Forms.frmDetalle detalle = new frmDetalle();
-            detalle.Show();
-            detalle.MdiParent = this;
-        }
-        */
-
-        private void TSMICapturar_Click(object sender, EventArgs e)
-        {
-            Forms.frmCoax coax = new frmCoax();
-            coax.IdUser = userId;
+            Forms.frmCoax coax = new frmCoax(est.Area, est.Num_Est, est.Lado, est.Maq_id, userId, est.Negocio);
+            //coax.IdUser = userId;
+            this.Hide();
             coax.Show();
-           // coax.MdiParent = this;
-           // this.WindowState = FormWindowState.Normal;
         }
 
-       
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            string hostname = Dns.GetHostName();
+            hostname = "DL9J6KJ02";
+            //this.tbcPlanes.SizeMode = TabSizeMode.FillToRight;
+            if (est.Linea(hostname) == true)
+            {
+                iconMenuItem1.Enabled = true;
+            }
+        }
     }
 }
