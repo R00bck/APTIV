@@ -29,7 +29,7 @@ namespace Scrap.Forms
 
         private void iconMenuItem1_Click(object sender, EventArgs e)
         {
-            Forms.frmCoax coax = new frmCoax(est.Area, est.Num_Est, est.Lado, est.Maq_id, userId, est.Negocio);
+            Forms.frmCapturas coax = new frmCapturas();
             //coax.IdUser = userId;
             this.Hide();
             coax.Show();
