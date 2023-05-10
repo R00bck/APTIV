@@ -21,7 +21,6 @@ namespace Scrap.Forms
 
         private void gdpnlMain_Paint(object sender, PaintEventArgs e)
         {
-
         }
 
         private void frmCapturas_Load(object sender, EventArgs e)
@@ -68,12 +67,14 @@ namespace Scrap.Forms
             current_cost = txtCurrentCost.Text;
             standar_cost = "NULL";
 
+           
 
             using (var connection = new MySqlConnection(connectionString))
             {
+                connection.Open();
                 try 
                 { 
-                    connection.Open();
+                   
                     MySqlCommand command = connection.CreateCommand();
                     command.CommandType = CommandType.Text;
                     command.CommandText = @"INSERT INTO TBLCOMPONENTES (COMPONENTE, DESCRIPTION, UM, PL, CURRENT_COST, STANDAR_COST) VALUES (@componente, @descripcion, @um, @pl, @current_cost, @standar_cost)";
@@ -84,14 +85,19 @@ namespace Scrap.Forms
                     command.Parameters.AddWithValue("@current_cost", current_cost);
                     command.Parameters.AddWithValue("@standar_cost", standar_cost);
                     MySqlDataReader dr = command.ExecuteReader();
+
+
                     connection.Close();
-                } 
+                }
                 catch 
                 {
                     MessageBox.Show("Error");
-                }    
+                }
+                
             }
 
         }
+
+       
     }
 }
