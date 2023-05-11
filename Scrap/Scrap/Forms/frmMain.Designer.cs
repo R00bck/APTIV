@@ -48,8 +48,8 @@
             this.iconMenuItem3});
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
-            this.msMain.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.msMain.Size = new System.Drawing.Size(124, 711);
+            this.msMain.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.msMain.Size = new System.Drawing.Size(155, 875);
             this.msMain.TabIndex = 1;
             this.msMain.Text = "menuStrip1";
             // 
@@ -61,7 +61,7 @@
             this.iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.iconMenuItem1.Name = "iconMenuItem1";
-            this.iconMenuItem1.Size = new System.Drawing.Size(115, 67);
+            this.iconMenuItem1.Size = new System.Drawing.Size(144, 72);
             this.iconMenuItem1.Text = "Manufactura";
             this.iconMenuItem1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.iconMenuItem1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -74,10 +74,11 @@
             this.iconMenuItem2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconMenuItem2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.iconMenuItem2.Name = "iconMenuItem2";
-            this.iconMenuItem2.Size = new System.Drawing.Size(115, 67);
+            this.iconMenuItem2.Size = new System.Drawing.Size(144, 72);
             this.iconMenuItem2.Text = "Ingenieria";
             this.iconMenuItem2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.iconMenuItem2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.iconMenuItem2.Click += new System.EventHandler(this.iconMenuItem2_Click);
             // 
             // iconMenuItem3
             // 
@@ -86,7 +87,7 @@
             this.iconMenuItem3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconMenuItem3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.iconMenuItem3.Name = "iconMenuItem3";
-            this.iconMenuItem3.Size = new System.Drawing.Size(115, 67);
+            this.iconMenuItem3.Size = new System.Drawing.Size(144, 72);
             this.iconMenuItem3.Text = "Planeacion";
             this.iconMenuItem3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.iconMenuItem3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -96,21 +97,23 @@
             this.gdpnlMain.ColorBottom = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(107)))), ((int)(((byte)(6)))));
             this.gdpnlMain.ColorTop = System.Drawing.Color.Black;
             this.gdpnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gdpnlMain.Location = new System.Drawing.Point(124, 0);
+            this.gdpnlMain.Location = new System.Drawing.Point(155, 0);
+            this.gdpnlMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gdpnlMain.Name = "gdpnlMain";
-            this.gdpnlMain.Size = new System.Drawing.Size(1020, 711);
+            this.gdpnlMain.Size = new System.Drawing.Size(1370, 875);
             this.gdpnlMain.TabIndex = 5;
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1144, 711);
+            this.ClientSize = new System.Drawing.Size(1525, 875);
             this.Controls.Add(this.gdpnlMain);
             this.Controls.Add(this.msMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.msMain;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "  Dashboard";

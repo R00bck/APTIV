@@ -175,3 +175,4 @@ C:\Users\qjspc2\Desktop\Proyectos Git Canales\APTIV\Scrap\Scrap\obj\Debug\Scrap.
 C:\Users\qjspc2\Desktop\Proyectos Git Canales\APTIV\Scrap\Scrap\obj\Debug\Scrap.exe
 C:\Users\qjspc2\Desktop\Proyectos Git Canales\APTIV\Scrap\Scrap\obj\Debug\Scrap.pdb
 C:\Users\qjspc2\Desktop\Proyectos Git Canales\APTIV\Scrap\Scrap\obj\Debug\Scrap.Forms.frmCapturas.resources
+C:\Users\R00B\Documents\GitHub\APTIV\Scrap\Scrap\obj\Debug\Scrap.Forms.frmCapturas.resources

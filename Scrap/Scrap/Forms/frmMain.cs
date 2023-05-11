@@ -16,7 +16,7 @@ namespace Scrap.Forms
         private int userId;
         public int UserId { get => userId; set => userId = value; }
         Librarys.Estacion est;
-        private string[] proceso = { "CORTE", "PRENSADO", "ENSAMBLE" };
+
         public frmMain()
         {
             InitializeComponent();
@@ -29,7 +29,8 @@ namespace Scrap.Forms
 
         private void iconMenuItem1_Click(object sender, EventArgs e)
         {
-            Forms.frmCapturas coax = new frmCapturas();
+            //string area, int estacion, string lado, int maq_id, int user, int neg
+            Forms.frmCoax coax = new frmCoax(est.Area, est.Num_Est, est.Lado, est.Maq_id, userId, est.Negocio);
             //coax.IdUser = userId;
             this.Hide();
             coax.Show();
@@ -44,6 +45,14 @@ namespace Scrap.Forms
             {
                 iconMenuItem1.Enabled = true;
             }
+        }
+
+        private void iconMenuItem2_Click(object sender, EventArgs e)
+        {
+            Forms.frmCapturas cap = new frmCapturas();
+            //coax.IdUser = userId;
+            this.Hide();
+            cap.Show();
         }
     }
 }

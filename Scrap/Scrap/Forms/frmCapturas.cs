@@ -14,9 +14,18 @@ namespace Scrap.Forms
 {
     public partial class frmCapturas : Form
     {
+        Librarys.componentes comp;
+        private string componente;
+        private string descripcion;
+        private string um;
+        private int pl;
+        private double current_cost;
+        private double standar_cost;
+
         public frmCapturas()
         {
             InitializeComponent();
+            comp = new Librarys.componentes();
         }
 
         private void gdpnlMain_Paint(object sender, PaintEventArgs e)
@@ -51,53 +60,44 @@ namespace Scrap.Forms
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            var connectionString = ConfigurationManager.ConnectionStrings["myDatabaseConnection"].ConnectionString;
-
-            string componente;
-            string descripcion;
-            string um;
-            int pl;
-            string current_cost;
-            string standar_cost;
-
-            componente = txtComponente.Text;
-            descripcion = txtDescripcion.Text;
-            um = txtUM.Text;
-            pl = Convert.ToInt32(txtPL.Text);
-            current_cost = txtCurrentCost.Text;
-            standar_cost = "NULL";
-
-           
-
-            using (var connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-                try 
-                { 
-                   
-                    MySqlCommand command = connection.CreateCommand();
-                    command.CommandType = CommandType.Text;
-                    command.CommandText = @"INSERT INTO TBLCOMPONENTES (COMPONENTE, DESCRIPTION, UM, PL, CURRENT_COST, STANDAR_COST) VALUES (@componente, @descripcion, @um, @pl, @current_cost, @standar_cost)";
-                    command.Parameters.AddWithValue("@componente", componente);
-                    command.Parameters.AddWithValue("@descripcion", descripcion);
-                    command.Parameters.AddWithValue("@um", um);
-                    command.Parameters.AddWithValue("@pl", pl);
-                    command.Parameters.AddWithValue("@current_cost", current_cost);
-                    command.Parameters.AddWithValue("@standar_cost", standar_cost);
-                    MySqlDataReader dr = command.ExecuteReader();
-
-
-                    connection.Close();
-                }
-                catch 
-                {
-                    MessageBox.Show("Error");
-                }
-                
-            }
+            InsertComponente();
 
         }
+        private void InsertComponente()
+        {
+            if (ValidaCampos())
+            {
+                componente = txtComponente.Text;
+                descripcion = txtDescripcion.Text;
+                um = txtUM.Text;
+                pl = Convert.ToInt32(txtPL.Text);
+                current_cost = double.Parse(txtCurrentCost.Text);
+                standar_cost = double.Parse(txtCurrentCost.Text);
+            }
+            else
+            {
+                MessageBox.Show("Llena los campos correspondientes");
+            }
+        }
 
-       
+        private bool ValidaCampos()
+        {
+            bool camposValidos = true;
+
+            foreach (Control control in Controls)
+            {
+                if (control is TextBox textBox)
+                {
+                    if (string.IsNullOrEmpty(textBox.Text))
+                    {
+                        camposValidos = false;
+                        // Realiza alguna acción, como mostrar un mensaje de error específico para cada campo
+                    }
+                }
+                // Agrega más condiciones según los controles relevantes en tu caso, como ComboBox, etc.
+            }
+
+            return camposValidos;
+        }
     }
 }

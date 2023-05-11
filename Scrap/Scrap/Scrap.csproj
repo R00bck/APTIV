@@ -124,6 +124,7 @@
       <DependentUpon>frmSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="Librarys\clsResize.cs" />
+    <Compile Include="Librarys\componentes.cs" />
     <Compile Include="Librarys\Estacion.cs" />
     <Compile Include="Librarys\GradientLayouPanel.cs">
       <SubType>Component</SubType>

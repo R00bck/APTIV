@@ -70,12 +70,13 @@
             this.gradientLayouPanel1.Controls.Add(this.tblCaptura, 0, 0);
             this.gradientLayouPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gradientLayouPanel1.Location = new System.Drawing.Point(0, 0);
+            this.gradientLayouPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.gradientLayouPanel1.Name = "gradientLayouPanel1";
             this.gradientLayouPanel1.RowCount = 3;
             this.gradientLayouPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.gradientLayouPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
             this.gradientLayouPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.gradientLayouPanel1.Size = new System.Drawing.Size(1034, 637);
+            this.gradientLayouPanel1.Size = new System.Drawing.Size(1379, 784);
             this.gradientLayouPanel1.TabIndex = 25;
             // 
             // dgvComponentes
@@ -100,11 +101,12 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvComponentes.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvComponentes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvComponentes.Location = new System.Drawing.Point(3, 194);
+            this.dgvComponentes.Location = new System.Drawing.Point(4, 239);
+            this.dgvComponentes.Margin = new System.Windows.Forms.Padding(4);
             this.dgvComponentes.Name = "dgvComponentes";
             this.dgvComponentes.RowHeadersVisible = false;
             this.dgvComponentes.RowHeadersWidth = 51;
-            this.dgvComponentes.Size = new System.Drawing.Size(1028, 408);
+            this.dgvComponentes.Size = new System.Drawing.Size(1371, 501);
             this.dgvComponentes.TabIndex = 4;
             // 
             // lblMensajes
@@ -112,9 +114,10 @@
             this.lblMensajes.BackColor = System.Drawing.Color.Silver;
             this.lblMensajes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblMensajes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMensajes.Location = new System.Drawing.Point(3, 605);
+            this.lblMensajes.Location = new System.Drawing.Point(4, 744);
+            this.lblMensajes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMensajes.Name = "lblMensajes";
-            this.lblMensajes.Size = new System.Drawing.Size(1028, 32);
+            this.lblMensajes.Size = new System.Drawing.Size(1371, 40);
             this.lblMensajes.TabIndex = 3;
             this.lblMensajes.Text = "MENSAJES";
             this.lblMensajes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -148,7 +151,8 @@
             this.tblCaptura.Controls.Add(this.lblLado, 2, 2);
             this.tblCaptura.Controls.Add(this.cbxLado, 3, 2);
             this.tblCaptura.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblCaptura.Location = new System.Drawing.Point(3, 3);
+            this.tblCaptura.Location = new System.Drawing.Point(4, 4);
+            this.tblCaptura.Margin = new System.Windows.Forms.Padding(4);
             this.tblCaptura.Name = "tblCaptura";
             this.tblCaptura.RowCount = 6;
             this.tblCaptura.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
@@ -157,7 +161,7 @@
             this.tblCaptura.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tblCaptura.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tblCaptura.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tblCaptura.Size = new System.Drawing.Size(1028, 185);
+            this.tblCaptura.Size = new System.Drawing.Size(1371, 227);
             this.tblCaptura.TabIndex = 24;
             // 
             // lblAreas
@@ -166,9 +170,10 @@
             this.lblAreas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblAreas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAreas.ForeColor = System.Drawing.Color.White;
-            this.lblAreas.Location = new System.Drawing.Point(3, 0);
+            this.lblAreas.Location = new System.Drawing.Point(4, 0);
+            this.lblAreas.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAreas.Name = "lblAreas";
-            this.lblAreas.Size = new System.Drawing.Size(117, 30);
+            this.lblAreas.Size = new System.Drawing.Size(156, 37);
             this.lblAreas.TabIndex = 0;
             this.lblAreas.Text = "Area:";
             this.lblAreas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -178,9 +183,10 @@
             this.lblLinea.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblLinea.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLinea.ForeColor = System.Drawing.Color.White;
-            this.lblLinea.Location = new System.Drawing.Point(3, 30);
+            this.lblLinea.Location = new System.Drawing.Point(4, 37);
+            this.lblLinea.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLinea.Name = "lblLinea";
-            this.lblLinea.Size = new System.Drawing.Size(117, 30);
+            this.lblLinea.Size = new System.Drawing.Size(156, 37);
             this.lblLinea.TabIndex = 1;
             this.lblLinea.Text = "Linea:";
             this.lblLinea.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -190,9 +196,10 @@
             this.lblBusqueda.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblBusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBusqueda.ForeColor = System.Drawing.Color.White;
-            this.lblBusqueda.Location = new System.Drawing.Point(3, 60);
+            this.lblBusqueda.Location = new System.Drawing.Point(4, 74);
+            this.lblBusqueda.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBusqueda.Name = "lblBusqueda";
-            this.lblBusqueda.Size = new System.Drawing.Size(117, 30);
+            this.lblBusqueda.Size = new System.Drawing.Size(156, 37);
             this.lblBusqueda.TabIndex = 4;
             this.lblBusqueda.Text = "Buscar:";
             this.lblBusqueda.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -204,9 +211,10 @@
             this.cbxProceso.Enabled = false;
             this.cbxProceso.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxProceso.FormattingEnabled = true;
-            this.cbxProceso.Location = new System.Drawing.Point(126, 93);
+            this.cbxProceso.Location = new System.Drawing.Point(168, 115);
+            this.cbxProceso.Margin = new System.Windows.Forms.Padding(4);
             this.cbxProceso.Name = "cbxProceso";
-            this.cbxProceso.Size = new System.Drawing.Size(384, 26);
+            this.cbxProceso.Size = new System.Drawing.Size(512, 32);
             this.cbxProceso.TabIndex = 6;
             this.cbxProceso.DropDownClosed += new System.EventHandler(this.cbxProceso_DropDownClosed);
             // 
@@ -215,9 +223,10 @@
             this.txtLead.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtLead.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtLead.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLead.Location = new System.Drawing.Point(126, 63);
+            this.txtLead.Location = new System.Drawing.Point(168, 78);
+            this.txtLead.Margin = new System.Windows.Forms.Padding(4);
             this.txtLead.Name = "txtLead";
-            this.txtLead.Size = new System.Drawing.Size(158, 24);
+            this.txtLead.Size = new System.Drawing.Size(209, 29);
             this.txtLead.TabIndex = 8;
             this.txtLead.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLead_KeyDown);
             // 
@@ -226,9 +235,10 @@
             this.lblProceso.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblProceso.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProceso.ForeColor = System.Drawing.Color.White;
-            this.lblProceso.Location = new System.Drawing.Point(3, 90);
+            this.lblProceso.Location = new System.Drawing.Point(4, 111);
+            this.lblProceso.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProceso.Name = "lblProceso";
-            this.lblProceso.Size = new System.Drawing.Size(117, 30);
+            this.lblProceso.Size = new System.Drawing.Size(156, 37);
             this.lblProceso.TabIndex = 2;
             this.lblProceso.Text = "Proceso:";
             this.lblProceso.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -238,9 +248,10 @@
             this.lblDefecto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblDefecto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDefecto.ForeColor = System.Drawing.Color.White;
-            this.lblDefecto.Location = new System.Drawing.Point(3, 120);
+            this.lblDefecto.Location = new System.Drawing.Point(4, 148);
+            this.lblDefecto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDefecto.Name = "lblDefecto";
-            this.lblDefecto.Size = new System.Drawing.Size(117, 30);
+            this.lblDefecto.Size = new System.Drawing.Size(156, 37);
             this.lblDefecto.TabIndex = 3;
             this.lblDefecto.Text = " Defecto:";
             this.lblDefecto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -250,9 +261,10 @@
             this.cbxDefecto.Enabled = false;
             this.cbxDefecto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxDefecto.FormattingEnabled = true;
-            this.cbxDefecto.Location = new System.Drawing.Point(126, 123);
+            this.cbxDefecto.Location = new System.Drawing.Point(168, 152);
+            this.cbxDefecto.Margin = new System.Windows.Forms.Padding(4);
             this.cbxDefecto.Name = "cbxDefecto";
-            this.cbxDefecto.Size = new System.Drawing.Size(234, 26);
+            this.cbxDefecto.Size = new System.Drawing.Size(311, 32);
             this.cbxDefecto.TabIndex = 25;
             this.cbxDefecto.DropDownClosed += new System.EventHandler(this.cbxDefecto_DropDownClosed_1);
             // 
@@ -261,9 +273,10 @@
             this.lblCantidad.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCantidad.ForeColor = System.Drawing.Color.White;
-            this.lblCantidad.Location = new System.Drawing.Point(3, 150);
+            this.lblCantidad.Location = new System.Drawing.Point(4, 185);
+            this.lblCantidad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCantidad.Name = "lblCantidad";
-            this.lblCantidad.Size = new System.Drawing.Size(117, 35);
+            this.lblCantidad.Size = new System.Drawing.Size(156, 42);
             this.lblCantidad.TabIndex = 11;
             this.lblCantidad.Text = "Cantidad:";
             this.lblCantidad.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -272,9 +285,10 @@
             // 
             this.txtCantidad.Enabled = false;
             this.txtCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidad.Location = new System.Drawing.Point(126, 153);
+            this.txtCantidad.Location = new System.Drawing.Point(168, 189);
+            this.txtCantidad.Margin = new System.Windows.Forms.Padding(4);
             this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(119, 24);
+            this.txtCantidad.Size = new System.Drawing.Size(157, 29);
             this.txtCantidad.TabIndex = 12;
             // 
             // label2
@@ -282,9 +296,10 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(516, 0);
+            this.label2.Location = new System.Drawing.Point(688, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(117, 30);
+            this.label2.Size = new System.Drawing.Size(156, 37);
             this.label2.TabIndex = 23;
             this.label2.Text = "Turno:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -294,9 +309,10 @@
             this.lblOperador.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblOperador.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOperador.ForeColor = System.Drawing.Color.White;
-            this.lblOperador.Location = new System.Drawing.Point(516, 30);
+            this.lblOperador.Location = new System.Drawing.Point(688, 37);
+            this.lblOperador.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOperador.Name = "lblOperador";
-            this.lblOperador.Size = new System.Drawing.Size(117, 30);
+            this.lblOperador.Size = new System.Drawing.Size(156, 37);
             this.lblOperador.TabIndex = 24;
             this.lblOperador.Text = "Operador:";
             this.lblOperador.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -306,9 +322,10 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(639, 30);
+            this.label1.Location = new System.Drawing.Point(852, 37);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(386, 30);
+            this.label1.Size = new System.Drawing.Size(515, 37);
             this.label1.TabIndex = 26;
             this.label1.Text = "10478";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -318,9 +335,10 @@
             this.lblShift.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblShift.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblShift.ForeColor = System.Drawing.Color.White;
-            this.lblShift.Location = new System.Drawing.Point(639, 0);
+            this.lblShift.Location = new System.Drawing.Point(852, 0);
+            this.lblShift.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblShift.Name = "lblShift";
-            this.lblShift.Size = new System.Drawing.Size(386, 30);
+            this.lblShift.Size = new System.Drawing.Size(515, 37);
             this.lblShift.TabIndex = 27;
             this.lblShift.Text = "A";
             this.lblShift.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -330,9 +348,10 @@
             this.lblArea.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArea.ForeColor = System.Drawing.Color.White;
-            this.lblArea.Location = new System.Drawing.Point(126, 0);
+            this.lblArea.Location = new System.Drawing.Point(168, 0);
+            this.lblArea.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblArea.Name = "lblArea";
-            this.lblArea.Size = new System.Drawing.Size(384, 23);
+            this.lblArea.Size = new System.Drawing.Size(512, 28);
             this.lblArea.TabIndex = 28;
             this.lblArea.Text = "COAXIALES 5";
             this.lblArea.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -342,9 +361,10 @@
             this.lblLine.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLine.ForeColor = System.Drawing.Color.White;
-            this.lblLine.Location = new System.Drawing.Point(126, 30);
+            this.lblLine.Location = new System.Drawing.Point(168, 37);
+            this.lblLine.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLine.Name = "lblLine";
-            this.lblLine.Size = new System.Drawing.Size(384, 30);
+            this.lblLine.Size = new System.Drawing.Size(512, 37);
             this.lblLine.TabIndex = 29;
             this.lblLine.Text = "CL-70";
             this.lblLine.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -355,10 +375,9 @@
             this.lblNumparte.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblNumparte.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNumparte.ForeColor = System.Drawing.Color.White;
-            this.lblNumparte.Location = new System.Drawing.Point(515, 150);
-            this.lblNumparte.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNumparte.Location = new System.Drawing.Point(687, 185);
             this.lblNumparte.Name = "lblNumparte";
-            this.lblNumparte.Size = new System.Drawing.Size(119, 35);
+            this.lblNumparte.Size = new System.Drawing.Size(158, 42);
             this.lblNumparte.TabIndex = 30;
             this.lblNumparte.Text = "Numparte:";
             this.lblNumparte.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -369,10 +388,9 @@
             this.lblNp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblNp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNp.ForeColor = System.Drawing.Color.White;
-            this.lblNp.Location = new System.Drawing.Point(638, 150);
-            this.lblNp.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNp.Location = new System.Drawing.Point(851, 185);
             this.lblNp.Name = "lblNp";
-            this.lblNp.Size = new System.Drawing.Size(388, 35);
+            this.lblNp.Size = new System.Drawing.Size(517, 42);
             this.lblNp.TabIndex = 31;
             this.lblNp.Text = "0000";
             this.lblNp.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -383,10 +401,9 @@
             this.lblLado.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblLado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLado.ForeColor = System.Drawing.Color.White;
-            this.lblLado.Location = new System.Drawing.Point(515, 60);
-            this.lblLado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblLado.Location = new System.Drawing.Point(687, 74);
             this.lblLado.Name = "lblLado";
-            this.lblLado.Size = new System.Drawing.Size(119, 30);
+            this.lblLado.Size = new System.Drawing.Size(158, 37);
             this.lblLado.TabIndex = 32;
             this.lblLado.Text = "Lado:";
             this.lblLado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -402,21 +419,22 @@
             "LADO 1",
             "LADO 2",
             "LADO 3"});
-            this.cbxLado.Location = new System.Drawing.Point(638, 62);
-            this.cbxLado.Margin = new System.Windows.Forms.Padding(2);
+            this.cbxLado.Location = new System.Drawing.Point(851, 76);
+            this.cbxLado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxLado.Name = "cbxLado";
-            this.cbxLado.Size = new System.Drawing.Size(164, 25);
+            this.cbxLado.Size = new System.Drawing.Size(217, 30);
             this.cbxLado.TabIndex = 33;
             this.cbxLado.Visible = false;
             // 
             // frmCoax
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(1034, 637);
+            this.ClientSize = new System.Drawing.Size(1379, 784);
             this.Controls.Add(this.gradientLayouPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmCoax";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CAPTURA";
