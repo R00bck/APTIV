@@ -50,13 +50,18 @@
             this.lblShift = new System.Windows.Forms.Label();
             this.lblArea = new System.Windows.Forms.Label();
             this.lblLine = new System.Windows.Forms.Label();
-            this.lblNumparte = new System.Windows.Forms.Label();
-            this.lblNp = new System.Windows.Forms.Label();
             this.lblLado = new System.Windows.Forms.Label();
             this.cbxLado = new System.Windows.Forms.ComboBox();
+            this.lblNumparte = new System.Windows.Forms.Label();
+            this.lblNp = new System.Windows.Forms.Label();
+            this.tblButtons = new System.Windows.Forms.TableLayoutPanel();
+            this.btnEliminar = new FontAwesome.Sharp.IconButton();
+            this.btnActualizar = new FontAwesome.Sharp.IconButton();
+            this.btnAgregar = new FontAwesome.Sharp.IconButton();
             this.gradientLayouPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComponentes)).BeginInit();
             this.tblCaptura.SuspendLayout();
+            this.tblButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // gradientLayouPanel1
@@ -146,10 +151,11 @@
             this.tblCaptura.Controls.Add(this.lblShift, 3, 0);
             this.tblCaptura.Controls.Add(this.lblArea, 1, 0);
             this.tblCaptura.Controls.Add(this.lblLine, 1, 1);
-            this.tblCaptura.Controls.Add(this.lblNumparte, 2, 5);
-            this.tblCaptura.Controls.Add(this.lblNp, 3, 5);
             this.tblCaptura.Controls.Add(this.lblLado, 2, 2);
             this.tblCaptura.Controls.Add(this.cbxLado, 3, 2);
+            this.tblCaptura.Controls.Add(this.lblNumparte, 2, 3);
+            this.tblCaptura.Controls.Add(this.lblNp, 3, 3);
+            this.tblCaptura.Controls.Add(this.tblButtons, 3, 4);
             this.tblCaptura.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblCaptura.Location = new System.Drawing.Point(4, 4);
             this.tblCaptura.Margin = new System.Windows.Forms.Padding(4);
@@ -216,6 +222,7 @@
             this.cbxProceso.Name = "cbxProceso";
             this.cbxProceso.Size = new System.Drawing.Size(512, 32);
             this.cbxProceso.TabIndex = 6;
+            this.cbxProceso.SelectedIndexChanged += new System.EventHandler(this.cbxProceso_SelectedIndexChanged);
             this.cbxProceso.DropDownClosed += new System.EventHandler(this.cbxProceso_DropDownClosed);
             // 
             // txtLead
@@ -266,6 +273,7 @@
             this.cbxDefecto.Name = "cbxDefecto";
             this.cbxDefecto.Size = new System.Drawing.Size(311, 32);
             this.cbxDefecto.TabIndex = 25;
+            this.cbxDefecto.SelectedIndexChanged += new System.EventHandler(this.cbxDefecto_SelectedIndexChanged);
             this.cbxDefecto.DropDownClosed += new System.EventHandler(this.cbxDefecto_DropDownClosed_1);
             // 
             // lblCantidad
@@ -369,32 +377,6 @@
             this.lblLine.Text = "CL-70";
             this.lblLine.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblNumparte
-            // 
-            this.lblNumparte.AutoSize = true;
-            this.lblNumparte.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNumparte.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumparte.ForeColor = System.Drawing.Color.White;
-            this.lblNumparte.Location = new System.Drawing.Point(687, 185);
-            this.lblNumparte.Name = "lblNumparte";
-            this.lblNumparte.Size = new System.Drawing.Size(158, 42);
-            this.lblNumparte.TabIndex = 30;
-            this.lblNumparte.Text = "Numparte:";
-            this.lblNumparte.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblNp
-            // 
-            this.lblNp.AutoSize = true;
-            this.lblNp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNp.ForeColor = System.Drawing.Color.White;
-            this.lblNp.Location = new System.Drawing.Point(851, 185);
-            this.lblNp.Name = "lblNp";
-            this.lblNp.Size = new System.Drawing.Size(517, 42);
-            this.lblNp.TabIndex = 31;
-            this.lblNp.Text = "0000";
-            this.lblNp.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // lblLado
             // 
             this.lblLado.AutoSize = true;
@@ -425,6 +407,109 @@
             this.cbxLado.Size = new System.Drawing.Size(217, 30);
             this.cbxLado.TabIndex = 33;
             this.cbxLado.Visible = false;
+            this.cbxLado.SelectedIndexChanged += new System.EventHandler(this.cbxLado_SelectedIndexChanged);
+            // 
+            // lblNumparte
+            // 
+            this.lblNumparte.AutoSize = true;
+            this.lblNumparte.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNumparte.ForeColor = System.Drawing.Color.White;
+            this.lblNumparte.Location = new System.Drawing.Point(687, 111);
+            this.lblNumparte.Name = "lblNumparte";
+            this.lblNumparte.Size = new System.Drawing.Size(112, 25);
+            this.lblNumparte.TabIndex = 30;
+            this.lblNumparte.Text = "Numparte:";
+            this.lblNumparte.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblNp
+            // 
+            this.lblNp.AutoSize = true;
+            this.lblNp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNp.ForeColor = System.Drawing.Color.White;
+            this.lblNp.Location = new System.Drawing.Point(851, 111);
+            this.lblNp.Name = "lblNp";
+            this.lblNp.Size = new System.Drawing.Size(60, 25);
+            this.lblNp.TabIndex = 31;
+            this.lblNp.Text = "0000";
+            this.lblNp.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tblButtons
+            // 
+            this.tblButtons.ColumnCount = 3;
+            this.tblButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tblButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tblButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tblButtons.Controls.Add(this.btnEliminar, 0, 0);
+            this.tblButtons.Controls.Add(this.btnActualizar, 0, 0);
+            this.tblButtons.Controls.Add(this.btnAgregar, 0, 0);
+            this.tblButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblButtons.Location = new System.Drawing.Point(851, 151);
+            this.tblButtons.Name = "tblButtons";
+            this.tblButtons.RowCount = 1;
+            this.tblCaptura.SetRowSpan(this.tblButtons, 2);
+            this.tblButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblButtons.Size = new System.Drawing.Size(517, 73);
+            this.tblButtons.TabIndex = 34;
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.BackColor = System.Drawing.Color.White;
+            this.btnEliminar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.IconChar = FontAwesome.Sharp.IconChar.Trash;
+            this.btnEliminar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnEliminar.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnEliminar.IconSize = 35;
+            this.btnEliminar.Location = new System.Drawing.Point(348, 4);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(165, 65);
+            this.btnEliminar.TabIndex = 37;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnEliminar.UseVisualStyleBackColor = false;
+            // 
+            // btnActualizar
+            // 
+            this.btnActualizar.BackColor = System.Drawing.Color.White;
+            this.btnActualizar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActualizar.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActualizar.IconChar = FontAwesome.Sharp.IconChar.PenToSquare;
+            this.btnActualizar.IconColor = System.Drawing.Color.Goldenrod;
+            this.btnActualizar.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnActualizar.IconSize = 35;
+            this.btnActualizar.Location = new System.Drawing.Point(176, 4);
+            this.btnActualizar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(164, 65);
+            this.btnActualizar.TabIndex = 36;
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnActualizar.UseVisualStyleBackColor = false;
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.BackColor = System.Drawing.Color.White;
+            this.btnAgregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnAgregar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregar.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
+            this.btnAgregar.IconColor = System.Drawing.Color.LimeGreen;
+            this.btnAgregar.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnAgregar.IconSize = 35;
+            this.btnAgregar.Location = new System.Drawing.Point(4, 4);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(164, 65);
+            this.btnAgregar.TabIndex = 16;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAgregar.UseVisualStyleBackColor = false;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // frmCoax
             // 
@@ -444,6 +529,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvComponentes)).EndInit();
             this.tblCaptura.ResumeLayout(false);
             this.tblCaptura.PerformLayout();
+            this.tblButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -473,5 +559,9 @@
         private System.Windows.Forms.Label lblNp;
         private System.Windows.Forms.Label lblLado;
         private System.Windows.Forms.ComboBox cbxLado;
+        private System.Windows.Forms.TableLayoutPanel tblButtons;
+        private FontAwesome.Sharp.IconButton btnAgregar;
+        private FontAwesome.Sharp.IconButton btnActualizar;
+        private FontAwesome.Sharp.IconButton btnEliminar;
     }
 }

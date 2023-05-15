@@ -461,8 +461,9 @@ namespace Scrap.Librarys
         {
             var connectionString = ConfigurationManager.ConnectionStrings["myDatabaseConnection"].ConnectionString;
 
-            string query = @"SELECT ID_NUMPCOMP AS ID, COD_PROCESO AS CODIGO, LADO, C.componente AS COMPONENTE,
-                            C.description AS DESCRIPCCION, CANTIDAD, C.um AS UM, C.CURRENT_COST AS COSTO
+            string query = @"SELECT C.ID AS ID, COD_PROCESO AS CODIGO, LADO, C.componente AS COMPONENTE,
+                            C.description AS DESCRIPCCION, CANTIDAD, C.um AS UM, C.CURRENT_COST AS COSTO,
+                            CANTIDAD * C.current_cost AS TOTAL
                             FROM numparte_componentes NC
                             INNER JOIN tblcomponentes C ON C.id = NC.id
                             WHERE LLAVE =?llave AND COD_PROCESO =?cod " + lado;
@@ -816,7 +817,7 @@ namespace Scrap.Librarys
 
         public bool ValidateText(string text)
         {
-            if (string.IsNullOrEmpty(text))
+            if (string.IsNullOrEmpty(text) == false)
                 return false;
             else
                 return true;
@@ -1056,45 +1057,8 @@ namespace Scrap.Librarys
             }
         }
         #region Insert
-        public Int64 InsertDefecto(string consecutivo, int num_id, int lea_id, int id_pro, int id_estacion, int id_linea, int cantidad,
-                                  int capturista, string turno, string defecto, int orden, string config, string fecha)
-        {
-            int id = 0;
-            var connectionString = ConfigurationManager.ConnectionStrings["myDatabaseConnection"].ConnectionString;
+        //_scrap.InsertDefecto(_search, _idProceso, _defecto, _lado, "C", cantidad, _maq_id, _areId, _idUser, _shift, _negocio);
 
-            string query = @"insert into tblscrap(consecutivo, num_id, lead_id, id_pro, id_estacion, comp_id, cantidad, costo, empleado, turno, defecto, fecha, orden)
-                         values(?conse, ?num_id, ?lea_id, ?id_pro, ?id_estacion, ?id_linea, ?cantidad,?config, ?empleado, ?turno, ?defecto, ?fecha, ?orden)";
-            //open connection
-            using (var connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-                //create command and assign the query and connection from the constructor
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.Parameters.Add("?conse", MySqlDbType.VarChar).Value = consecutivo;
-                cmd.Parameters.Add("?num_id", MySqlDbType.Int32).Value = num_id;
-                cmd.Parameters.Add("?lea_id", MySqlDbType.Int32).Value = lea_id;
-                cmd.Parameters.Add("?id_pro", MySqlDbType.Int32).Value = id_pro;
-                cmd.Parameters.Add("?id_estacion", MySqlDbType.Int32).Value = id_estacion;
-                cmd.Parameters.Add("?id_linea", MySqlDbType.Int16).Value = id_linea;
-                cmd.Parameters.Add("?cantidad", MySqlDbType.Int16).Value = cantidad;
-                cmd.Parameters.Add("?empleado", MySqlDbType.Int32).Value = capturista;
-                cmd.Parameters.Add("?turno", MySqlDbType.VarChar).Value = turno;
-                cmd.Parameters.Add("?defecto", MySqlDbType.VarChar).Value = defecto;
-                cmd.Parameters.Add("?orden", MySqlDbType.Int16).Value = orden;
-                cmd.Parameters.Add("?config", MySqlDbType.VarChar).Value = config;
-                cmd.Parameters.Add("?fecha", MySqlDbType.VarChar).Value = fecha;
-
-                //Execute command
-                cmd.ExecuteNonQuery();
-                if (cmd.LastInsertedId != null)
-                    cmd.Parameters.Add(new MySqlParameter("newId", cmd.LastInsertedId));
-                id = Convert.ToInt32(cmd.Parameters["@newId"].Value);
-
-                connection.Close();
-            }
-
-            return id;
-        }
         public int InsertScrapComponentes(Int64 consecutivo, int idcomp, float qty)
         {
             int id = 0;
@@ -1333,6 +1297,119 @@ namespace Scrap.Librarys
 
             return false;
         }
+        public long InsertDefecto(string search, int idProceso, string defecto, string lado, string codigo, int cantidad,
+                                  int maq_id, int areId, int idUser, string shift, int negocio, decimal costo)
+        {
+            long id;
+            var connectionString = ConfigurationManager.ConnectionStrings["myDatabaseConnection"].ConnectionString;
+
+            string insertQuery = @"INSERT INTO captura_defectos(llave, proceso, cod_defecto, lado, cod_proceso, cantidad, maq_id, are_id, operador,
+                           turno, negocio, costo, date_insert)
+                           VALUES (@llave, @idpro, @defecto, @lado, @codigo, @cantidad, @maquina, @area, @usuario, @shift, @negocio, @costo, NOW())";
+            string selectQuery = "SELECT LAST_INSERT_ID()";
+
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        using (var insertCommand = new MySqlCommand(insertQuery, connection, transaction))
+                        {
+                            insertCommand.Parameters.AddWithValue("@llave", search);
+                            insertCommand.Parameters.AddWithValue("@idpro", idProceso);
+                            insertCommand.Parameters.AddWithValue("@defecto", defecto);
+                            insertCommand.Parameters.AddWithValue("@lado", lado);
+                            insertCommand.Parameters.AddWithValue("@codigo", codigo);
+                            insertCommand.Parameters.AddWithValue("@cantidad", cantidad);
+                            insertCommand.Parameters.AddWithValue("@maquina", maq_id);
+                            insertCommand.Parameters.AddWithValue("@area", areId);
+                            insertCommand.Parameters.AddWithValue("@usuario", idUser);
+                            insertCommand.Parameters.AddWithValue("@shift", shift);
+                            insertCommand.Parameters.AddWithValue("@negocio", negocio);
+                            insertCommand.Parameters.AddWithValue("@costo", costo);
+
+                            insertCommand.ExecuteNonQuery();
+                        }
+
+                        using (var selectCommand = new MySqlCommand(selectQuery, connection, transaction))
+                        {
+                            id = Convert.ToInt64(selectCommand.ExecuteScalar());
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+
+                connection.Close();
+            }
+
+            return id;
+        }
+
+        public bool InsertComponentes(long idscrap, int idcomp, decimal cantidad, out long insertedId)
+        {
+            bool success = false;
+            insertedId = 0;
+            var connectionString = ConfigurationManager.ConnectionStrings["myDatabaseConnection"].ConnectionString;
+
+            string insertQuery = @"INSERT INTO captura_detalle(id_scrap, id, cantidad, insert_date)
+                          VALUES (@id, @idcomp, @cantidad, NOW())";
+            string selectQuery = "SELECT LAST_INSERT_ID()";
+
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        using (var insertCommand = new MySqlCommand(insertQuery, connection, transaction))
+                        {
+                            insertCommand.Parameters.AddWithValue("@id", idscrap);
+                            insertCommand.Parameters.AddWithValue("@idcomp", idcomp);
+                            insertCommand.Parameters.AddWithValue("@cantidad", cantidad);
+
+                            insertCommand.ExecuteNonQuery();
+                        }
+
+                        using (var selectCommand = new MySqlCommand(selectQuery, connection, transaction))
+                        {
+                            insertedId = Convert.ToInt64(selectCommand.ExecuteScalar());
+                        }
+
+                        transaction.Commit();
+                        success = true;
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+
+                connection.Close();
+            }
+
+            return success;
+        }
+
+        public string GetId(string combo)
+        {
+            string[] id = combo.Split('-');
+            string regresa = id[0];
+
+            return regresa;
+        }
+
         #endregion
     }
 }

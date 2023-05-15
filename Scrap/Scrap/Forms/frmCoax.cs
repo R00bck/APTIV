@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace Scrap.Forms
 {
@@ -26,11 +27,17 @@ namespace Scrap.Forms
         private string _lado;
         private int _negocio;
         private int _idProceso;
+        private string _defecto;
         private string _search;
         private bool _plado;
+        private string _ladoLead;
+        private int _areId;
+        private string _shift;
+        private decimal _costo;
+        private int _cantidad;
         #endregion
 
-        public frmCoax(string area, int estacion, string lado, int maq_id, int user, int neg)
+        public frmCoax(string area, int estacion, string lado, int maq_id, int user, int neg, int are_id)
         {
             InitializeComponent();
             _scrap = new Librarys.Scrap();
@@ -40,6 +47,7 @@ namespace Scrap.Forms
             _maq_id = maq_id;
             _idUser = user;
             _negocio = neg;
+            _areId = are_id;
         }
 
         #region DropDownList
@@ -98,13 +106,31 @@ namespace Scrap.Forms
         }
         private void cbxProceso_DropDownClosed(object sender, EventArgs e)
         {
-            cbxDefecto.Enabled = true;
-            _idProceso = int.Parse(cbxProceso.SelectedValue.ToString());
-            FillDefectos(_idProceso, _negocio);
+            try
+            {
+                cbxDefecto.Enabled = true;
+                _idProceso = int.Parse(cbxProceso.SelectedValue.ToString());
+                FillDefectos(_idProceso, _negocio);
+                if (_idProceso == 4)
+                {
+                    lblLado.Visible = true;
+                    cbxLado.Visible = true;
+                    Mensaje(0, "Seleccione Lado");
+                }
+                else
+                {
+                    lblLado.Visible = false;
+                    cbxLado.Visible = false;
+                    fillDataGrid(_search, Query(""), codigo(_idProceso));
 
-            fillDataGrid(_search, Query(), codigo(_idProceso));
+                    Mensaje(0, "Selecciona el defecto.");
+                }
 
-            Mensaje(0, "Selecciona el defecto.");
+            }
+            catch
+            {
+                Mensaje(1, "Selecciona un proceso.");
+            }
         }
         private string codigo(int idpro)
         {
@@ -124,140 +150,52 @@ namespace Scrap.Forms
 
             return cod;
         }
-        private string Query()
+        private string Query(string lado)
         {
-            if (_plado == true)
-                return "AND LADO=1";
+            if (_plado == true && _idProceso == 4)
+                return "AND LADO=" + lado.Substring(4).Trim();
             else
                 return  "";
         }
-        private void cbxEstaciones_DropDownClosed(object sender, EventArgs e)
+        private void InsertaComponentes(long idDefectos, int numDef)
         {
             try
             {
-                //_idSub = int.Parse(cbxEstaciones.SelectedValue.ToString());
-                cbxDefecto.Enabled = true;
-            }
-            catch
-            {
-                Mensaje(1, "Selecciona un proceso.");
-            }
-        }
-        private void FillTextBox(int maq_id)
-        {
-            AutoCompleteStringCollection MyCollection = new AutoCompleteStringCollection();
-
-           /* foreach (DataRow row in _scrap.SelectLeadsLinea(maq_id).Rows)
-            {
-                MyCollection.Add(row[0].ToString());
-            }*/
-
-            txtLead.AutoCompleteCustomSource = MyCollection;
-        }
-        private void FillComponentes()
-        {
-            /*cbxComponentes.DisplayMember = "COMPONENTE";
-            cbxComponentes.ValueMember = "ID";
-            cbxComponentes.SelectedIndex = -1;
-            cbxComponentes.DataSource = _scrap.SelectComponentes();
-            cbxComponentes.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cbxComponentes.AutoCompleteSource = AutoCompleteSource.ListItems;*/
-
-        }
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            /*if(ckxAtrazo.Checked == true)
-            {
-                _shift = cbxTurno.Text;
-            }
-            else
-            {
-                _shift = _scrap.Shift();
-            }
-            //MessageBox.Show(shift);
-            if(rdbComponente.Checked == true || rdbSetup.Checked == true)
-            {
-                _idComponente = int.Parse(cbxComponentes.SelectedValue.ToString());
-                InsertaComponente(_idComponente);
-            }
-            else
-            {
-                InsertaScrap();
-            }*/
-        }
-        private void InsertaScrap()
-        {
-            try
-            {
-                int cantidad = 0;
-                if (_scrap.ValidateText(txtCantidad.Text))
+                int idComp = 0;
+                decimal cant = 0m;
+                long id;
+                bool res = false;
+                foreach (DataGridViewRow row in dgvComponentes.Rows)
                 {
-                    cantidad = int.Parse(txtCantidad.Text.Trim());
-                    Int64 cons = InsertScrap(cantidad);
-
-                    int idComp = 0;
-                    float cant = 0;
-
-                    if (cons > 0)
+                    if (Convert.ToBoolean(row.Cells[0].Value) == true)
                     {
-                        foreach (DataGridViewRow row in dgvComponentes.Rows)
-                        {
-                            if (Convert.ToBoolean(row.Cells[9].Value) == true)
-                            {
-                                //MessageBox.Show(row.Cells[0].Value.ToString() + " - " + row.Cells[3].Value.ToString());
-                                //idComp == 1828 || idComp == 4621 || idComp == 2070 || idComp == 4025 || 
-                                idComp = int.Parse(row.Cells[0].Value.ToString());
-                                if (idComp == 5037)
-                                {
-                                    if (float.Parse(row.Cells[4].Value.ToString()) > 1.5)
-                                    {
-                                        cant = 0;
-                                    }
-                                }
-                                else
-                                {
-                                    cant = float.Parse(row.Cells[4].Value.ToString());
-                                }
-                                _scrap.InsertScrapComponentes(cons, idComp, cant);
-                            }
-                        }
-                        txtCantidad.Clear();
-                        dgvComponentes.DataSource = null;
-                        dgvComponentes.Rows.Clear();
+
+                        idComp = int.Parse(row.Cells[1].Value.ToString());
+                        cant = decimal.Parse(ConvierteFormato(row.Cells[6].Value.ToString())) * numDef;
+
+                        res = _scrap.InsertComponentes(idDefectos, idComp, cant, out id);
+
                     }
-                    else
-                    {
-                        Mensaje(0, "Error al insertar los registros.");
-                    }
+
                 }
+
+                if(res == true)
+                {
+                    txtCantidad.Clear();
+                    dgvComponentes.DataSource = null;
+                    dgvComponentes.Rows.Clear();
+                    Mensaje(0, "Registrons insertados correctamente");
+                }
+
                 else
-                    Mensaje(1, "Ingrese la cantidad a capturar.");
+                {
+                    Mensaje(1, "Error al insertar los registros");
+                }
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-        }
-        private void InsertaComponente(int comp_id)
-        {
-            float cantidad = 0;
-            if (_scrap.ValidateText(txtCantidad.Text))
-            {
-                cantidad = float.Parse(txtCantidad.Text.Trim());
-                Int64 cons = InsertScrap(1);
-
-                if (cons > 0)
-                {
-                    _scrap.InsertScrapComponentes(cons, comp_id, cantidad);
-                    txtCantidad.Clear();
-                }
-                else
-                {
-                    Mensaje(0, "Error al insertar los registros.");
-                }
-            }
-            else
-                Mensaje(1, "Ingrese la cantidad a capturar.");
         }
         private void cbxDefecto_DropDownClosed(object sender, EventArgs e)
         {
@@ -268,52 +206,34 @@ namespace Scrap.Forms
         private Int64 InsertScrap(int cantidad)
         {
             Int64 idScrap = 0;
-            /*if(ckxAtrazo.Checked == true)
+            _shift = "A";
+            _costo = Sumatoria(cantidad);
+
+            if(_plado == true)
             {
-                _date = dtpFecha.Value.ToString("yyyy-MM-dd"); 
-                if(cbxTurno.Text == "A")
+                idScrap = _scrap.InsertDefecto(_search, _idProceso, _defecto, _lado, codigo(_idProceso), cantidad, _maq_id, _areId, _idUser, _shift, _negocio,_costo);
+                if(idScrap > 0)
                 {
-                    _date = _date + " 13:00:00";
+                    InsertaComponentes(idScrap, cantidad);
                 }
                 else
                 {
-                    _date = _date + " 20:00:00";
+                    Mensaje(0, "Error al insertar los registros.");
                 }
+                //Mensaje(0, "Componentes capturados correctamente.");
             }
             else
             {
-                _date = _scrap.SelectFechaCompleta();
-            }
-            
-
-            if(rdbComponente.Checked == true)
-            {
-                idScrap = _scrap.InsertDefecto("COMP", 0, 0, 0, 0, _maq_id, cantidad, _idUser, _shift, "N/A", 0, "N/A", _date);
-                Mensaje(0, "Componentes capturados correctamente.");
-            }
-            else if(rdbSetup.Checked == true)
-            {
-                idScrap = _scrap.InsertDefecto("setup", 0, 0, 0, 0, _maq_id, cantidad, _idUser, _shift, "N/A", 0, "N/A", _date);
-                Mensaje(0, "Componentes capturados correctamente.");
-            }
-            else
-            {
-                _defecto = _scrap.GetId(cbxDefecto.Text);
-                _config = cbxConfig.Text;
-                if (qtyLeads == 1)
+                idScrap = _scrap.InsertDefecto(_search, _idProceso, _defecto, "N/A", codigo(_idProceso), cantidad, _maq_id, _areId, _idUser, _shift, _negocio, _costo);
+                if (idScrap > 0)
                 {
-                    idScrap = _scrap.InsertDefecto("N/A", _scrap.Num_id, _scrap.Lea_id, _idPro, _idSub, _maq_id, cantidad, _idUser, _shift, _defecto, 
-                                                   secuencia, _config, _date);
-                    Mensaje(0, "Componentes capturados correctamente.");
+                    InsertaComponentes(idScrap, cantidad);
                 }
                 else
                 {
-                    idScrap = _scrap.InsertDefecto(key, _scrap.Num_id, _scrap.Lea_id, _idPro, _idSub, _maq_id, cantidad, _idUser, _shift, _defecto, 
-                                                   secuencia, _config, _date);
-                    Mensaje(0, "Componentes capturados correctamente.");
+                    Mensaje(0, "Error al insertar los registros.");
                 }
-            }*/
-
+            }
 
             return idScrap;
         }
@@ -334,6 +254,7 @@ namespace Scrap.Forms
                         _plado = false;
                         lblLado.Visible = false;
                         cbxLado.Visible = false;
+                        ClearDefectos();
                     }
                 }
                 else
@@ -342,10 +263,9 @@ namespace Scrap.Forms
                     {
                         _plado = true;
                         cbxProceso.Enabled = true;
-                        lblLado.Visible = true;
-                        cbxLado.Visible = true;
-                        Mensaje(0, "Seleccione un Lado y proceso");
                         FillProcesos();
+                        ClearDefectos();
+                        Mensaje(0, "Seleccione un proceso");
                     }
                     else
                     {
@@ -356,7 +276,16 @@ namespace Scrap.Forms
 
             }
         }
- 
+        private void ClearDefectos()
+        {
+            int count = cbxDefecto.Items.Count;
+            if (count > 0)
+            {
+                cbxDefecto.DataSource = null;
+                cbxDefecto.Items.Clear();
+            }
+
+        }
        /*
         private void Clear(string tipo, bool enab)
         {
@@ -391,7 +320,7 @@ namespace Scrap.Forms
 
         private void frmCoax_FormClosing(object sender, FormClosingEventArgs e)
         {
-            frmMain main= new frmMain();
+            frmMain main= new frmMain(_idUser);
             main.Show();
         }
         private void fillDataGrid(string key, string lado, string codpro)
@@ -404,9 +333,8 @@ namespace Scrap.Forms
             columnaCheckBox.Name = "chkColumna";
 
             // Agregar la columna CheckBox al DataGridView
-            dgvComponentes.Columns.Add(columnaCheckBox);
-
-
+            if (!dgvComponentes.Columns.Contains("chkColumna"))
+                dgvComponentes.Columns.Add(columnaCheckBox);
 
 
             dgvComponentes.DataSource = _scrap.SearchListComponents(key, lado, codpro);
@@ -433,7 +361,100 @@ namespace Scrap.Forms
 
         private void cbxDefecto_DropDownClosed_1(object sender, EventArgs e)
         {
-            txtCantidad.Enabled = true;
+            try
+            {
+                ComboBox cbxDefecto = (ComboBox)sender;
+                _defecto = _scrap.GetId(cbxDefecto.GetItemText(cbxDefecto.SelectedItem));
+                txtCantidad.Enabled = true;
+            }
+            catch
+            {
+                Mensaje(1, "Seleccione un defecto.");
+            }
+
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+
+            if (_scrap.ValidateText(txtCantidad.Text))
+            {
+                Mensaje(1, "Ingresa la cantidad de piezas.");
+            }
+            else
+            {
+                _cantidad = int.Parse(txtCantidad.Text);
+                InsertScrap(_cantidad);
+            }
+
+        }
+
+        private decimal Sumatoria(int captura)
+        {
+            decimal cantidad = 0;
+            decimal total = 0m;
+            if(dgvComponentes.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow row in dgvComponentes.Rows)
+                {
+                    if (Convert.ToBoolean(row.Cells[0].Value) == true)
+                    {
+                        cantidad = decimal.Parse(ConvierteFormato(row.Cells[9].Value.ToString()));
+                        total = total + (cantidad * captura);
+                    }
+                }
+            }
+
+            return total;
+        }
+
+        private string ConvierteFormato(string valor) 
+        {
+            decimal valorDecimal;
+
+            if (decimal.TryParse(valor, System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture, out valorDecimal))
+                // El valor tiene un formato científico
+                return valorDecimal.ToString();
+            else
+                return valor;
+        }
+
+        private void CheckValues()
+        {
+            if (dgvComponentes.Rows.Count > 0)
+            {
+                int checkBoxColumnIndex = dgvComponentes.Columns["chkColumna"].Index;
+
+                foreach (DataGridViewRow row in dgvComponentes.Rows)
+                {
+                    DataGridViewCheckBoxCell checkBoxCell = row.Cells[checkBoxColumnIndex] as DataGridViewCheckBoxCell;
+                    checkBoxCell.Value = true;
+                }
+            }
+        }
+
+        private void cbxDefecto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CheckValues();
+        }
+
+        private void cbxLado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _ladoLead = cbxLado.Text;
+                fillDataGrid(_search, Query(_ladoLead), codigo(_idProceso));
+
+            }
+            catch
+            {
+                Mensaje(0, "Seleccione un defecto.");
+            }
+        }
+
+        private void cbxProceso_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

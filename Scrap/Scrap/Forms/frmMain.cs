@@ -14,13 +14,14 @@ namespace Scrap.Forms
     public partial class frmMain : Form
     {
         private int userId;
-        public int UserId { get => userId; set => userId = value; }
+
         Librarys.Estacion est;
 
-        public frmMain()
+        public frmMain(int operador)
         {
             InitializeComponent();
             est = new Librarys.Estacion();
+            userId = operador;
         }
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -30,7 +31,7 @@ namespace Scrap.Forms
         private void iconMenuItem1_Click(object sender, EventArgs e)
         {
             //string area, int estacion, string lado, int maq_id, int user, int neg
-            Forms.frmCoax coax = new frmCoax(est.Area, est.Num_Est, est.Lado, est.Maq_id, userId, est.Negocio);
+            Forms.frmCoax coax = new frmCoax(est.Area, est.Num_Est, est.Lado, est.Maq_id, userId, est.Negocio, est.Are_id);
             //coax.IdUser = userId;
             this.Hide();
             coax.Show();

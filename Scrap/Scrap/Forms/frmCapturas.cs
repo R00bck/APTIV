@@ -19,8 +19,8 @@ namespace Scrap.Forms
         private string descripcion;
         private string um;
         private int pl;
-        private double current_cost;
-        private double standar_cost;
+        private decimal current_cost;
+        private decimal standar_cost;
 
         public frmCapturas()
         {
@@ -71,8 +71,11 @@ namespace Scrap.Forms
                 descripcion = txtDescripcion.Text;
                 um = txtUM.Text;
                 pl = Convert.ToInt32(txtPL.Text);
-                current_cost = double.Parse(txtCurrentCost.Text);
-                standar_cost = double.Parse(txtCurrentCost.Text);
+                current_cost = decimal.Parse(txtCurrentCost.Text);
+                standar_cost = decimal.Parse(txtCurrentCost.Text);
+
+                if (comp.InsertComponentes(componente, descripcion, um, pl, current_cost, standar_cost) > 0)
+                    lblMensaje.Text = "Registro Almacenado!";
             }
             else
             {
@@ -84,10 +87,17 @@ namespace Scrap.Forms
         {
             bool camposValidos = true;
 
-            foreach (Control control in Controls)
+            List<Control> allControls = GetAllControls(this);
+
+            foreach (Control control in allControls)
             {
                 if (control is TextBox textBox)
                 {
+                    if (textBox.Name == "txtBuscar")
+                    {
+                        continue; // Omitir este control y pasar al siguiente
+                    }
+
                     if (string.IsNullOrEmpty(textBox.Text))
                     {
                         camposValidos = false;
@@ -98,6 +108,18 @@ namespace Scrap.Forms
             }
 
             return camposValidos;
+        }
+        private List<Control> GetAllControls(Control container)
+        {
+            List<Control> controls = new List<Control>();
+
+            foreach (Control control in container.Controls)
+            {
+                controls.Add(control);
+                controls.AddRange(GetAllControls(control));
+            }
+
+            return controls;
         }
     }
 }

@@ -82,7 +82,7 @@ namespace Scrap
                                     //operadorMaquina = operador.Substring(5, 4);
                                     operadorMaquina = int.Parse(operador.Substring(1, 5));
                                     // operadormaquina
-                                    frmMain main = new Forms.frmMain();
+                                    frmMain main = new Forms.frmMain(operadorMaquina);
                                     this.Hide();
                                     main.Show();
                                 }

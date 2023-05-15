@@ -7,6 +7,8 @@ using System.Configuration;
 using System.Data;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using System.Windows.Forms;
+
 namespace Scrap.Librarys
 {
     class componentes
@@ -25,7 +27,7 @@ namespace Scrap.Librarys
         public double Current_cost { get => current_cost; set => current_cost = value; }
         public double Standar_cost { get => standar_cost; set => standar_cost = value; }
 
-        public int InsertComponentes(string componente, string descripcion, string um, string pl, decimal current_cost, decimal standar_cost)
+        public int InsertComponentes(string componente, string descripcion, string um, int pl, decimal current_cost, decimal standar_cost)
         {
             int id = 0;
             var connectionString = ConfigurationManager.ConnectionStrings["myDatabaseConnection"].ConnectionString;
@@ -60,7 +62,7 @@ namespace Scrap.Librarys
                 catch (Exception ex)
                 {
                     // Manejar la excepción de acuerdo a tus necesidades
-                    Console.WriteLine("Error al insertar el componente: " + ex.Message);
+                    MessageBox.Show("Error al insertar el componente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     id = 0;
                 }
                 finally
