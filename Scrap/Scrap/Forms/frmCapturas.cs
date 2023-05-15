@@ -21,6 +21,7 @@ namespace Scrap.Forms
         private int pl;
         private decimal current_cost;
         private decimal standar_cost;
+        private string searchcomp;
 
         public frmCapturas()
         {
@@ -35,6 +36,7 @@ namespace Scrap.Forms
         private void frmCapturas_Load(object sender, EventArgs e)
         {
             dgvComponentes.DataSource = GetComponentesList();
+            dgvComponentes.ClearSelection();
         }
 
         private DataTable GetComponentesList()
@@ -42,7 +44,7 @@ namespace Scrap.Forms
             var connectionString = ConfigurationManager.ConnectionStrings["myDatabaseConnection"].ConnectionString;
 
             string query = @"SELECT ID, COMPONENTE, DESCRIPTION, UM, PL, CURRENT_COST FROM TBLCOMPONENTES 
-                           ORDER BY ID ASC";
+                           ORDER BY ID DESC";
 
             using (var connection = new MySqlConnection(connectionString))
             {
@@ -58,12 +60,13 @@ namespace Scrap.Forms
             }
         }
 
+        // *-*-*-*-*-*- BOTON AGREGAR *-*-*-*-*-*-
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            InsertComponente();
+            InsertComponentes();
 
         }
-        private void InsertComponente()
+        private void InsertComponentes()
         {
             if (ValidaCampos())
             {
@@ -75,12 +78,22 @@ namespace Scrap.Forms
                 standar_cost = decimal.Parse(txtCurrentCost.Text);
 
                 if (comp.InsertComponentes(componente, descripcion, um, pl, current_cost, standar_cost) > 0)
+                {
+                    lblMensaje.Text = "";
                     lblMensaje.Text = "Registro Almacenado!";
+                    lblMensaje.BackColor = Color.Green;
+                    dgvComponentes.DataSource = GetComponentesList();
+                    MessageBox.Show("Componente Insertado Correctamente", "OK!", MessageBoxButtons.OK);
+                    Cleartxt();
+                }
             }
             else
             {
-                MessageBox.Show("Llena los campos correspondientes");
+                lblMensaje.BackColor = Color.Red;
+                lblMensaje.Text = "Error!";
+                MessageBox.Show("Llenar los campos correspondientes");
             }
+            
         }
 
         private bool ValidaCampos()
@@ -97,6 +110,7 @@ namespace Scrap.Forms
                     {
                         continue; // Omitir este control y pasar al siguiente
                     }
+                    // *-*-*-*-*-*-*-*-*-*-*- P E N D I E N T E   JC *-*-*-*-*-*-*-*-*-*-*-*-
 
                     if (string.IsNullOrEmpty(textBox.Text))
                     {
@@ -121,5 +135,118 @@ namespace Scrap.Forms
 
             return controls;
         }
+
+
+        // *-*-*-*-*-*- BOTON ACTUALIZAR *-*-*-*-*-*-
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            UpdateComponentes();
+        }
+
+        private void UpdateComponentes()
+        {
+            if (ValidaCampos())
+            {
+                componente = txtComponente.Text;
+                descripcion = txtDescripcion.Text;
+                um = txtUM.Text;
+                pl = Convert.ToInt32(txtPL.Text);
+                current_cost = decimal.Parse(txtCurrentCost.Text);
+                standar_cost = decimal.Parse(txtCurrentCost.Text);
+
+                if (comp.UpdateComponentes(componente, descripcion, um, pl, current_cost, standar_cost) > 0)
+
+                lblMensaje.Text = "";
+                lblMensaje.Text = "Registro Actualizado!";
+                lblMensaje.BackColor = Color.Green;
+                Cleartxt();
+                // Refresh a DataGried para mostrar componente actualizado
+                dgvComponentes.DataSource = GetComponentesList();
+
+            }
+            else
+            {
+                lblMensaje.BackColor = Color.Red;
+                lblMensaje.Text = "Error";
+                MessageBox.Show("Selecciona un Componente");
+            }
+        }
+
+        // *-*-*-*-*-*- BOTON ELIMINAR *-*-*-*-*-*-
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            DeleteComponentes();
+        }
+
+        private void DeleteComponentes()
+        {
+            if (ValidaCampos()) 
+            {
+                DialogResult dialogResult = MessageBox.Show("Eliminar Registro", "Deseas eliminar el Componente?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    componente = txtComponente.Text;
+                    if (comp.DeleteComponentes(componente) > 0)
+
+                    lblMensaje.Text = "";
+                    lblMensaje.Text = "Registro Eliminado!";
+                    lblMensaje.BackColor = Color.Green;
+                    Cleartxt();
+
+                    // Refresh a DataGried para mostrar componente actualizado
+                    dgvComponentes.DataSource = GetComponentesList();
+
+                }
+            }
+            else
+            {
+                lblMensaje.BackColor = Color.Red;
+                lblMensaje.Text = "Error";
+                MessageBox.Show("Selecciona un Componente");
+            }
+        }
+
+        // Carga de datos a Textboxs Datagried
+        private void dgvComponentes_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtComponente.Text= dgvComponentes.SelectedRows[0].Cells[1].Value.ToString();
+            txtDescripcion.Text = dgvComponentes.SelectedRows[0].Cells[2].Value.ToString();
+            txtUM.Text = dgvComponentes.SelectedRows[0].Cells[3].Value.ToString();
+            txtPL.Text = dgvComponentes.SelectedRows[0].Cells[4].Value.ToString();
+            txtCurrentCost.Text = dgvComponentes.SelectedRows[0].Cells[5].Value.ToString();
+        }
+        private void Cleartxt()
+        {
+            // Limpieza de Textbox vacios
+            txtComponente.Text = "";
+            txtDescripcion.Text = "";
+            txtUM.Text = "";
+            txtPL.Text = "";
+            txtCurrentCost.Text = "";
+            dgvComponentes.ClearSelection();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            SearchComponentes();
+        }
+
+        private void SearchComponentes()
+        {
+            if (ValidaCampos())
+            {
+                searchcomp = txtBuscar.Text;
+                if (comp.SearchComponentes(searchcomp) > 0)
+                // Refresh a DataGried para mostrar componente actualizado
+                dgvComponentes.DataSource = GetComponentesList();
+            }
+            else
+            {
+                lblMensaje.BackColor = Color.Red;
+                lblMensaje.Text = "Error";
+                MessageBox.Show("Selecciona un Componente");
+            }
+        }
+
     }
 }

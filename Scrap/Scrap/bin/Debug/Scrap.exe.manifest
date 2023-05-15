@@ -127,14 +127,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Scrap.exe" size="185344">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Scrap.exe" size="188928">
       <assemblyIdentity name="Scrap" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>N6mStZUS6Sa5phh1KD4ChfSGBby5SbwUkxJ59wFNx+k=</dsig:DigestValue>
+        <dsig:DigestValue>SvkKQzcQzL3vrxVc5Lb+Dw8xUxaOn3+b4GsG+8mW1Bk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

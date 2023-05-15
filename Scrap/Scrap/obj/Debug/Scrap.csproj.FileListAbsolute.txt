@@ -176,3 +176,33 @@ C:\Users\qjspc2\Desktop\Proyectos Git Canales\APTIV\Scrap\Scrap\obj\Debug\Scrap.
 C:\Users\qjspc2\Desktop\Proyectos Git Canales\APTIV\Scrap\Scrap\obj\Debug\Scrap.pdb
 C:\Users\qjspc2\Desktop\Proyectos Git Canales\APTIV\Scrap\Scrap\obj\Debug\Scrap.Forms.frmCapturas.resources
 C:\Users\R00B\Documents\GitHub\APTIV\Scrap\Scrap\obj\Debug\Scrap.Forms.frmCapturas.resources
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\bin\Debug\Scrap.exe.config
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\bin\Debug\Scrap.exe.manifest
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\bin\Debug\Scrap.application
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\bin\Debug\Scrap.exe
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\bin\Debug\Scrap.pdb
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\bin\Debug\Google.Protobuf.dll
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\bin\Debug\ZstdNet.dll
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\bin\Debug\System.Memory.dll
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\bin\Debug\System.Buffers.dll
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\bin\Debug\MySql.Data.xml
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\obj\Debug\Scrap.csproj.AssemblyReference.cache
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\obj\Debug\Scrap.frmLoguin.resources
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\obj\Debug\Scrap.Forms.frmCapturas.resources
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\obj\Debug\Scrap.Forms.frmCoax.resources
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\obj\Debug\Scrap.Forms.frmMain.resources
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\obj\Debug\Scrap.Forms.frmSearch.resources
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\obj\Debug\Scrap.Properties.Resources.resources
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\obj\Debug\Scrap.csproj.GenerateResource.cache
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\obj\Debug\Scrap.csproj.CoreCompileInputs.cache
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\obj\Debug\Scrap.exe.manifest
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\obj\Debug\Scrap.application
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\obj\Debug\Scrap.csproj.CopyComplete
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\obj\Debug\Scrap.exe
+C:\Users\qjspc2\Desktop\GitHub\APTIV\Scrap\Scrap\obj\Debug\Scrap.pdb
